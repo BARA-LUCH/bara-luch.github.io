@@ -4,654 +4,569 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bara Luch — ML Engineer & Data Scientist</title>
-  <meta name="description" content="Bara Luch — ML Engineer, Data Scientist & Business Analyst. 7 end-to-end projects spanning fraud detection, NLP, computer vision, and healthcare analytics. Available worldwide." />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Bara Luch — ML Engineer, NLP Engineer & Data Scientist. 9 end-to-end ML systems, 3 production APIs. Available for DS/NLP/ML roles globally." />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --blue:       #1A56A0;
-      --blue-light: #2E6FBF;
-      --blue-pale:  #EBF2FB;
-      --blue-mid:   #C5D9F1;
-      --ink:        #111827;
-      --muted:      #4B5563;
-      --light:      #F8FAFC;
-      --white:      #FFFFFF;
-      --accent:     #E84040;
-      --border:     #DDE6F0;
-      --green:      #059669;
+      --bg:       #0a0a0a;
+      --bg2:      #111111;
+      --surface:  #161616;
+      --border:   #222222;
+      --border2:  #2a2a2a;
+      --white:    #fafafa;
+      --off:      #e4e4e4;
+      --muted:    #666666;
+      --dim:      #3a3a3a;
+      --accent:   #00ff88;
+      --accent2:  #00cc6a;
+      --blue:     #4f9eff;
+      --orange:   #ff6b35;
+      --mono:     'IBM Plex Mono', monospace;
+      --display:  'Syne', sans-serif;
+      --body:     'Inter', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--body); background: var(--bg); color: var(--white); overflow-x: hidden; line-height: 1.6; }
 
-    /* ── NAV ── */
+    /* SELECTION */
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--dim); }
+
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+      height: 60px; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 64px;
     }
-    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--blue); text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--blue); }
-    .nav-cta { background: var(--blue); color: var(--white) !important; padding: 0.45rem 1.1rem; border-radius: 6px; }
-    .nav-cta:hover { background: var(--blue-light) !important; color: var(--white) !important; }
+    .nav-logo { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); letter-spacing: 0.05em; text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-resume {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      border: 1px solid var(--accent); color: var(--accent);
+      padding: 6px 16px; border-radius: 2px; text-decoration: none;
+      transition: all 0.15s; cursor: pointer; background: transparent;
+    }
+    .nav-resume:hover { background: var(--accent); color: var(--bg); }
 
-    /* ── HERO ── */
+    /* HERO */
     #hero {
-      min-height: 100vh; padding: 110px 5vw 80px;
-      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center;
-      background: radial-gradient(ellipse 90% 70% at 75% 40%, var(--blue-pale) 0%, transparent 65%), var(--white);
+      min-height: 100vh;
+      padding: 120px 40px 80px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px; margin: 0 auto;
+      position: relative;
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--blue-pale); border: 1px solid var(--blue-mid);
-      color: var(--blue); border-radius: 100px;
-      font-size: 0.75rem; font-weight: 600; padding: 0.35rem 1rem;
-      margin-bottom: 1.5rem; letter-spacing: 0.05em; text-transform: uppercase;
+    .hero-left {}
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: 0.72rem; color: var(--accent);
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
     }
-    .hero-badge span { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: inline-block; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
-    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.6rem, 4.5vw, 3.8rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
-    h1 em { color: var(--blue); font-style: italic; }
-    .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 480px; margin-bottom: 0.75rem; }
-    .availability { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--green); font-weight: 600; margin-bottom: 2rem; }
-    .availability::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--green); }
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.6rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; }
-    .btn-primary { background: var(--blue); color: var(--white); box-shadow: 0 4px 16px rgba(26,86,160,0.3); }
-    .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,86,160,0.35); }
-    .btn-secondary { background: var(--white); color: var(--blue); border: 2px solid var(--blue-mid); }
-    .btn-secondary:hover { background: var(--blue-pale); border-color: var(--blue); }
-    .hero-stats { display: flex; gap: 2.5rem; }
-    .stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--blue); line-height: 1; }
-    .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+    .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+    .hero-name {
+      font-family: var(--display); font-weight: 800;
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      line-height: 0.92; letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .hero-name .accent-line { color: var(--accent); display: block; }
+    .hero-role {
+      font-family: var(--mono); font-size: 0.85rem; color: var(--muted);
+      letter-spacing: 0.06em; margin-bottom: 32px; margin-top: 20px;
+    }
+    .hero-role .sep { color: var(--dim); margin: 0 8px; }
+    .hero-desc {
+      font-size: 1rem; color: var(--muted); line-height: 1.75;
+      max-width: 520px; font-weight: 300; margin-bottom: 40px;
+    }
+    .hero-desc strong { color: var(--off); font-weight: 500; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 20px; border-radius: 2px; text-decoration: none; transition: all 0.15s; cursor: pointer; border: none; }
+    .btn-green { background: var(--accent); color: var(--bg); font-weight: 500; }
+    .btn-green:hover { background: var(--accent2); }
+    .btn-outline { border: 1px solid var(--border2); color: var(--muted); background: transparent; }
+    .btn-outline:hover { border-color: var(--white); color: var(--white); }
 
-    /* Hero visual */
-    .hero-visual { position: relative; }
+    /* HERO RIGHT — STATS CARD */
     .hero-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 16px; padding: 1.5rem;
-      box-shadow: 0 20px 60px rgba(26,86,160,0.1);
+      border: 1px solid var(--border); background: var(--surface);
+      padding: 32px; border-radius: 4px;
     }
-    .card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
-    .card-dot { width:10px; height:10px; border-radius:50%; }
-    .card-title { font-size: 0.8rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .metric-row { display: flex; justify-content: space-between; margin-bottom: 0.75rem; align-items: center; }
-    .metric-label { font-size: 0.85rem; color: var(--muted); }
-    .metric-val { font-weight: 700; font-size: 0.95rem; color: var(--ink); }
-    .metric-val.good { color: var(--green); }
-    .bar-wrap { height: 6px; background: var(--blue-pale); border-radius: 3px; margin-bottom: 1rem; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--blue-light)); animation: grow 1.5s ease forwards; transform-origin: left; }
-    @keyframes grow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
-    .floating-tag {
-      position: absolute; background: var(--white); border: 1px solid var(--border);
-      border-radius: 10px; padding: 0.6rem 1rem; font-size: 0.8rem; font-weight: 600;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      animation: float 4s ease-in-out infinite;
+    .hero-card-title { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px; }
+    .stat-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-key { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+    .stat-val { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); font-weight: 500; }
+    .stat-val.white { color: var(--white); }
+    .avail-dot { display: inline-block; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; margin-right: 6px; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(0,255,136,0.4); } 50% { opacity:0.8; box-shadow: 0 0 0 6px rgba(0,255,136,0); } }
+
+    /* SECTIONS */
+    .section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+    .full-bleed { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .full-bleed .section { }
+    .section-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-family: var(--display); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; color: var(--white); letter-spacing: -0.02em; margin-bottom: 12px; }
+    .section-sub { color: var(--muted); font-size: 0.9rem; max-width: 480px; font-weight: 300; margin-bottom: 48px; }
+
+    /* SKILLS */
+    .skills-table { width: 100%; border-collapse: collapse; }
+    .skills-table tr { border-bottom: 1px solid var(--border); }
+    .skills-table tr:last-child { border-bottom: none; }
+    .skills-table td { padding: 16px 0; vertical-align: top; }
+    .skills-table .sk-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; width: 160px; padding-top: 18px; }
+    .sk-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { font-family: var(--mono); font-size: 0.7rem; color: var(--off); background: var(--surface); border: 1px solid var(--border); padding: 4px 10px; border-radius: 2px; transition: all 0.15s; }
+    .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* PROJECTS */
+    .project-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .project-item {
+      background: var(--bg); padding: 40px;
+      display: grid; grid-template-columns: 48px 1fr auto;
+      gap: 32px; align-items: start;
+      transition: background 0.15s;
+      position: relative;
     }
-    .tag-1 { top: -20px; right: 20px; color: var(--blue); animation-delay: 0s; }
-    .tag-2 { bottom: -15px; left: 10px; color: var(--green); animation-delay: 1.5s; }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .project-item::before { content:''; position: absolute; left:0; top:0; bottom:0; width:0; background: var(--accent); transition: width 0.2s; }
+    .project-item:hover { background: var(--surface); }
+    .project-item:hover::before { width: 3px; }
+    .project-num { font-family: var(--mono); font-size: 0.65rem; color: var(--dim); padding-top: 4px; }
+    .project-body {}
+    .project-title { font-family: var(--display); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .project-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 16px; font-weight: 300; max-width: 600px; }
+    .project-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+    .pchip { font-family: var(--mono); font-size: 0.65rem; background: var(--bg2); border: 1px solid var(--border2); color: var(--muted); padding: 2px 8px; border-radius: 2px; }
+    .project-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; min-width: 160px; }
+    .project-link-btn { font-family: var(--mono); font-size: 0.68rem; color: var(--accent); text-decoration: none; letter-spacing: 0.08em; white-space: nowrap; }
+    .project-link-btn:hover { text-decoration: underline; }
+    .project-metrics { text-align: right; }
+    .pm-row { font-family: var(--mono); font-size: 0.68rem; color: var(--white); white-space: nowrap; }
+    .pm-row span { color: var(--muted); }
 
-    /* ── SECTIONS ── */
-    section { padding: 90px 5vw; }
-    section:nth-child(even) { background: var(--light); }
-    .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
-    h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.02em; margin-bottom: 1rem; }
-    .section-sub { font-size: 1rem; color: var(--muted); max-width: 560px; margin-bottom: 3rem; }
+    /* APIs */
+    .api-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .api-card { background: var(--bg); padding: 32px; position: relative; overflow: hidden; transition: background 0.15s; }
+    .api-card:hover { background: var(--surface); }
+    .api-card::after { content:''; position: absolute; bottom:0; left:0; right:0; height:2px; background: linear-gradient(90deg, var(--accent), transparent); opacity:0; transition: opacity 0.2s; }
+    .api-card:hover::after { opacity:1; }
+    .api-live { font-family: var(--mono); font-size: 0.62rem; color: var(--accent); letter-spacing: 0.15em; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .api-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation: pulse 2s ease-in-out infinite; }
+    .api-title { font-family: var(--display); font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .api-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.65; margin-bottom: 20px; font-weight: 300; }
+    .api-routes { margin-bottom: 16px; }
+    .api-route { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+    .api-method { color: var(--accent); }
+    .api-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+    .api-badge { font-family: var(--mono); font-size: 0.6rem; border: 1px solid var(--border2); color: var(--muted); padding: 2px 7px; border-radius: 2px; }
 
-    /* ── ABOUT ── */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 0.975rem; }
-    .about-text p strong { color: var(--ink); }
-    .about-flags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
-    .flag-chip { background: var(--blue-pale); color: var(--blue); border: 1px solid var(--blue-mid); border-radius: 6px; padding: 0.3rem 0.75rem; font-size: 0.8rem; font-weight: 600; }
-    .lang-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
-    .lang-name { font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; }
-    .lang-level { font-size: 0.85rem; color: var(--muted); }
+    /* EXPERIENCE */
+    .exp-item { padding: 40px 0; border-bottom: 1px solid var(--border); }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; gap: 24px; flex-wrap: wrap; }
+    .exp-left {}
+    .exp-role { font-family: var(--display); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .exp-org { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }
+    .exp-date { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); white-space: nowrap; margin-top: 2px; }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li { font-size: 0.875rem; color: var(--muted); line-height: 1.7; padding: 5px 0 5px 20px; position: relative; font-weight: 300; }
+    .exp-bullets li::before { content:'→'; position:absolute; left:0; color: var(--dim); font-size: 0.75rem; }
+    .exp-bullets strong { color: var(--off); font-weight: 500; }
 
-    /* ── SKILLS ── */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-    .skill-card {
-      background: var(--white); border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.5rem; transition: all 0.2s;
-      border-top: 3px solid var(--blue);
+    /* RESUME SECTION */
+    .resume-banner {
+      display: flex; align-items: center; justify-content: space-between;
+      border: 1px solid var(--border); padding: 28px 32px; border-radius: 4px;
+      background: var(--surface); flex-wrap: wrap; gap: 20px;
+      margin-top: 40px;
     }
-    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,86,160,0.1); }
-    .skill-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
-    .skill-title { font-weight: 700; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.75rem; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .skill-tag { background: var(--blue-pale); color: var(--blue); border-radius: 4px; padding: 0.2rem 0.6rem; font-size: 0.75rem; font-weight: 500; }
+    .resume-info {}
+    .resume-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px; }
+    .resume-name { font-family: var(--display); font-size: 1rem; font-weight: 700; color: var(--white); }
+    .resume-meta { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
 
-    /* ── PROJECTS ── */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.75rem; }
-    .project-card {
-      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
-      padding: 1.75rem; transition: all 0.25s; position: relative; overflow: hidden;
-    }
-    .project-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--blue), var(--blue-light));
-    }
-    .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(26,86,160,0.12); }
-    .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
-    .project-emoji { font-size: 1.75rem; }
-    .project-links { display: flex; gap: 0.5rem; }
-    .project-link { font-size: 0.78rem; font-weight: 600; color: var(--blue); text-decoration: none; background: var(--blue-pale); padding: 0.25rem 0.65rem; border-radius: 5px; transition: background 0.2s; }
-    .project-link:hover { background: var(--blue-mid); }
-    .project-link.live { background: #DCFCE7; color: var(--green); }
-    .project-link.live:hover { background: #BBF7D0; }
-    .project-title { font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
-    .project-desc { font-size: 0.875rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
-    .project-metrics { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
-    .metric-chip { background: var(--light); border: 1px solid var(--border); border-radius: 5px; padding: 0.2rem 0.6rem; font-size: 0.75rem; font-weight: 600; color: var(--ink); }
-    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .stack-tag { background: var(--blue-pale); color: var(--blue); border-radius: 4px; padding: 0.2rem 0.55rem; font-size: 0.72rem; font-weight: 500; }
-    .project-date { font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; }
+    /* CONTACT */
+    #contact-section { text-align: center; padding: 100px 40px; }
+    .contact-title { font-family: var(--display); font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 800; color: var(--white); letter-spacing: -0.03em; margin-bottom: 16px; }
+    .contact-title span { color: var(--accent); }
+    .contact-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 40px; font-weight: 300; }
+    .contact-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+    .contact-email { font-family: var(--mono); font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .contact-email:hover { text-decoration: underline; }
 
-    /* ── EXPERIENCE ── */
-    .timeline { position: relative; padding-left: 2rem; }
-    .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background: var(--blue-mid); border-radius:1px; }
-    .timeline-item { position: relative; margin-bottom: 2.5rem; }
-    .timeline-item::before { content:''; position:absolute; left:-2.45rem; top:6px; width:12px; height:12px; border-radius:50%; background: var(--blue); border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--blue); }
-    .timeline-date { font-size: 0.78rem; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
-    .timeline-title { font-weight: 700; font-size: 1rem; color: var(--ink); }
-    .timeline-org { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.75rem; }
-    .timeline-bullets { list-style: none; }
-    .timeline-bullets li { font-size: 0.875rem; color: var(--muted); padding: 0.2rem 0; padding-left: 1rem; position: relative; }
-    .timeline-bullets li::before { content:'→'; position:absolute; left:0; color:var(--blue); font-size:0.75rem; top:0.25rem; }
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.65rem; color: var(--muted); }
+    footer .fl { color: var(--accent); }
 
-    /* ── CONTACT ── */
-    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .contact-info h3 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; margin-bottom: 1rem; }
-    .contact-info p { color: var(--muted); margin-bottom: 1.5rem; font-size: 0.95rem; }
-    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
-    .contact-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--ink); font-size: 0.9rem; font-weight: 500; padding: 0.75rem 1rem; background: var(--white); border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s; }
-    .contact-link:hover { background: var(--blue-pale); border-color: var(--blue); color: var(--blue); }
-    .contact-icon { font-size: 1.1rem; }
-    .contact-form { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
-    .form-group { margin-bottom: 1.25rem; }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--ink); margin-bottom: 0.4rem; }
-    .form-group input, .form-group textarea {
-      width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 8px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--ink);
-      background: var(--light); transition: border-color 0.2s; outline: none;
-    }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--blue); background: var(--white); }
-    .form-group textarea { resize: vertical; min-height: 120px; }
-    .form-note { font-size: 0.8rem; color: var(--muted); margin-top: 0.75rem; }
+    /* FADE */
+    .fade { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade.in { opacity: 1; transform: none; }
 
-    /* ── FOOTER ── */
-    footer { background: var(--ink); color: rgba(255,255,255,0.6); text-align: center; padding: 2rem 5vw; font-size: 0.85rem; }
-    footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
-    footer strong { color: var(--white); }
-
-    /* ── ANIMATIONS ── */
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      #hero { grid-template-columns: 1fr; padding: 90px 5vw 60px; }
-      .hero-visual { display: none; }
-      .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; gap: 48px; }
+      .hero-card { max-width: 100%; }
+      .project-item { grid-template-columns: 1fr; gap: 16px; }
+      .project-meta { align-items: flex-start; }
+      .api-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .hero-stats { gap: 1.5rem; }
+      .section { padding: 60px 20px; }
+      #hero { padding: 100px 20px 60px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
 <nav>
-  <a href="#hero" class="nav-logo">Bara Luch</a>
+  <a href="#" class="nav-logo">bara.luch</a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#apis">APIs</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
+  <a class="nav-resume btn-outline" id="nav-dl" href="#" onclick="downloadResume();return false;">↓ Resume</a>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
+<div style="max-width:1200px;margin:0 auto">
 <section id="hero">
-  <div class="hero-text fade-in">
-    <div class="hero-badge"><span></span> Available for remote &amp; relocation worldwide</div>
-    <h1>ML Engineer,<br><em>Data Scientist</em><br>&amp; Business Analyst</h1>
-    <p class="hero-sub">Building end-to-end AI systems that turn complex data into measurable business impact — from fraud detection to healthcare analytics.</p>
-    <p class="availability">📍 Tel Aviv, Israel &amp; St. John's, Canada · Open to USA, UK, Canada, Germany, Asia &amp; beyond</p>
+  <div class="hero-left">
+    <div class="hero-eyebrow">ML Engineer · NLP · Data Science</div>
+    <h1 class="hero-name">
+      BARA<br>
+      <span class="accent-line">LUCH</span>
+    </h1>
+    <p class="hero-role">
+      Machine Learning<span class="sep">/</span>NLP<span class="sep">/</span>Data Science
+    </p>
+    <p class="hero-desc">
+      Graduating April 2026. Built <strong>9 end-to-end ML systems</strong> and
+      <strong>3 production REST APIs</strong> spanning fraud detection, healthcare analytics,
+      multilingual NLP, and computer vision. Research exchange at <strong>SKKU, South Korea</strong>.
+      Trilingual: English · Hebrew · Arabic.
+    </p>
     <div class="hero-btns">
-      <a href="#projects" class="btn btn-primary">View Projects →</a>
-      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-      <a href="https://github.com/BARA-LUCH" target="_blank" class="btn btn-secondary">GitHub ↗</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-num">7</div><div class="stat-label">End-to-end projects</div></div>
-      <div><div class="stat-num">6.3M</div><div class="stat-label">Max dataset rows</div></div>
-      <div><div class="stat-num">0.991</div><div class="stat-label">Best ROC-AUC</div></div>
+      <a href="https://github.com/BARA-LUCH" target="_blank" class="btn btn-green">↗ GitHub</a>
+      <a href="https://huggingface.co/spaces/bara-luch/customer-churn-dashboard" target="_blank" class="btn btn-outline">⚡ Live Demo</a>
+      <a href="#" onclick="downloadResume();return false;" class="btn btn-outline">↓ Download Resume</a>
     </div>
   </div>
 
-  <div class="hero-visual fade-in">
-    <div style="position:relative;">
-      <div class="floating-tag tag-1">🔐 Fraud: ROC-AUC 0.991</div>
-      <div class="hero-card">
-        <div class="card-header">
-          <div class="card-dot" style="background:#E84040"></div>
-          <div class="card-dot" style="background:#F59E0B"></div>
-          <div class="card-dot" style="background:#10B981"></div>
-          <span class="card-title">Model Performance</span>
-        </div>
-        <div class="metric-row"><span class="metric-label">XGBoost — Fraud Detection</span><span class="metric-val good">0.991</span></div>
-        <div class="bar-wrap"><div class="bar-fill" style="width:99.1%"></div></div>
-        <div class="metric-row"><span class="metric-label">Graph-XGBoost — Churn</span><span class="metric-val good">0.791</span></div>
-        <div class="bar-wrap"><div class="bar-fill" style="width:79.1%; animation-delay:0.3s"></div></div>
-        <div class="metric-row"><span class="metric-label">LSTM — Stock Prediction</span><span class="metric-val good">0.743</span></div>
-        <div class="bar-wrap"><div class="bar-fill" style="width:74.3%; animation-delay:0.6s"></div></div>
-        <div class="metric-row"><span class="metric-label">ViT — Thermal Segmentation</span><span class="metric-val good">43.29% IoU</span></div>
-        <div class="bar-wrap"><div class="bar-fill" style="width:65%; animation-delay:0.9s"></div></div>
-        <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; font-size:0.8rem; color:var(--muted);">
-          <span>📊 7 Projects</span><span>🌍 Available Worldwide</span><span>🎓 Apr 2026</span>
-        </div>
-      </div>
-      <div class="floating-tag tag-2">💰 $284K Revenue Protected</div>
+  <div class="hero-card fade">
+    <div class="hero-card-title">// profile</div>
+    <div class="stat-row">
+      <span class="stat-key">status</span>
+      <span class="stat-val"><span class="avail-dot"></span>Available Apr 2026</span>
     </div>
-  </div>
-</section>
-
-<!-- ── ABOUT ── -->
-<section id="about">
-  <div class="section-label">About Me</div>
-  <div class="about-grid">
-    <div class="about-text fade-in">
-      <h2>Turning data into<br>decisions that matter</h2>
-      <p>I'm a Junior ML Engineer and Data Scientist based in <strong>Tel Aviv, Israel</strong> and <strong>St. John's, Canada</strong>, graduating with a B.Sc. in Data Science & Business (Finance) from Memorial University of Newfoundland in April 2026.</p>
-      <p>I spent a full year at <strong>Sungkyunkwan University (SKKU), South Korea</strong> as a research exchange student, building and benchmarking production-style AI systems covering computer vision, NLP, and multimodal learning.</p>
-      <p>I'm equally strong in <strong>business analytics</strong> — I don't just build models, I translate them into SQL reports, Excel dashboards, and stakeholder presentations that drive real decisions.</p>
-      <p>I'm actively looking for <strong>Data Scientist, ML Engineer, and Business Analyst roles</strong> — open to remote work and relocation worldwide.</p>
-      <div class="about-flags">
-        <span class="flag-chip">🇺🇸 USA</span>
-        <span class="flag-chip">🇬🇧 UK</span>
-        <span class="flag-chip">🇨🇦 Canada</span>
-        <span class="flag-chip">🇩🇪 Germany</span>
-        <span class="flag-chip">🌏 Asia</span>
-        <span class="flag-chip">🇮🇱 Israel</span>
-        <span class="flag-chip">🌍 Worldwide Remote</span>
-      </div>
+    <div class="stat-row">
+      <span class="stat-key">location</span>
+      <span class="stat-val white">Tel Aviv + St. John's</span>
     </div>
-    <div class="fade-in">
-      <div class="lang-card">
-        <div class="lang-name">🇬🇧 English</div>
-        <div class="lang-level">Fluent — professional working proficiency</div>
-      </div>
-      <div class="lang-card">
-        <div class="lang-name">🇮🇱 Hebrew</div>
-        <div class="lang-level">Native speaker</div>
-      </div>
-      <div class="lang-card">
-        <div class="lang-name">🇸🇦 Arabic</div>
-        <div class="lang-level">Native speaker</div>
-      </div>
-      <div class="lang-card" style="background:var(--blue-pale); border-color:var(--blue-mid);">
-        <div class="lang-name" style="color:var(--blue)">🎓 B.Sc. Data Science & Business</div>
-        <div class="lang-level" style="color:var(--blue)">Memorial University of Newfoundland · Apr 2026</div>
-      </div>
+    <div class="stat-row">
+      <span class="stat-key">ml_systems</span>
+      <span class="stat-val">9</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">production_apis</span>
+      <span class="stat-val">3</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">best_roc_auc</span>
+      <span class="stat-val">0.991</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">languages</span>
+      <span class="stat-val white">EN · HE · AR</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-key">open_to</span>
+      <span class="stat-val white">Remote + Relocation</span>
     </div>
   </div>
 </section>
+</div>
 
-<!-- ── SKILLS ── -->
-<section id="skills">
-  <div class="section-label">Technical Skills</div>
-  <h2>Full-stack data science</h2>
-  <p class="section-sub">From raw data to deployed models to boardroom-ready reports.</p>
-  <div class="skills-grid">
-    <div class="skill-card fade-in">
-      <div class="skill-icon">🤖</div>
-      <div class="skill-title">Machine Learning</div>
-      <div class="skill-tags">
-        <span class="skill-tag">XGBoost</span><span class="skill-tag">Random Forest</span>
-        <span class="skill-tag">Logistic Regression</span><span class="skill-tag">SHAP</span>
-        <span class="skill-tag">Isolation Forest</span><span class="skill-tag">Scikit-learn</span>
-      </div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">🧠</div>
-      <div class="skill-title">Deep Learning</div>
-      <div class="skill-tags">
-        <span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span>
-        <span class="skill-tag">CNNs</span><span class="skill-tag">LSTMs</span>
-        <span class="skill-tag">Vision Transformers</span><span class="skill-tag">Autoencoders</span>
-      </div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">💬</div>
-      <div class="skill-title">NLP & AI</div>
-      <div class="skill-tags">
-        <span class="skill-tag">HuggingFace</span><span class="skill-tag">OpenAI API</span>
-        <span class="skill-tag">NER</span><span class="skill-tag">Sentiment Analysis</span>
-        <span class="skill-tag">Multilingual</span><span class="skill-tag">SegFormer</span>
-      </div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">🗄️</div>
-      <div class="skill-title">Business Analytics & SQL</div>
-      <div class="skill-tags">
-        <span class="skill-tag">SQL</span><span class="skill-tag">SQLite</span>
-        <span class="skill-tag">CTEs</span><span class="skill-tag">Window Functions</span>
-        <span class="skill-tag">Excel</span><span class="skill-tag">KPI Dashboards</span>
-      </div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">📊</div>
-      <div class="skill-title">Data & Visualization</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span>
-        <span class="skill-tag">Plotly</span><span class="skill-tag">Streamlit</span>
-        <span class="skill-tag">Folium</span><span class="skill-tag">Feature Engineering</span>
-      </div>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">⚙️</div>
-      <div class="skill-title">Tools & Languages</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span><span class="skill-tag">R</span>
-        <span class="skill-tag">C++</span><span class="skill-tag">Git</span>
-        <span class="skill-tag">Docker</span><span class="skill-tag">Linux</span>
-      </div>
-    </div>
+<!-- SKILLS -->
+<div class="full-bleed" id="skills">
+<div class="section">
+  <div class="fade">
+    <div class="section-label">// technical stack</div>
+    <h2 class="section-title">Core Competencies</h2>
+    <p class="section-sub">Built across 9 production ML systems.</p>
   </div>
-</section>
+  <table class="skills-table">
+    <tr class="fade"><td class="sk-label">Languages</td><td><div class="sk-chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">R</span><span class="chip">C++</span><span class="chip">JavaScript</span></div></td></tr>
+    <tr class="fade"><td class="sk-label">ML / DL</td><td><div class="sk-chips"><span class="chip">XGBoost</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">LSTM</span><span class="chip">Vision Transformers</span><span class="chip">Autoencoders</span><span class="chip">Isolation Forest</span></div></td></tr>
+    <tr class="fade"><td class="sk-label">NLP & AI</td><td><div class="sk-chips"><span class="chip">HuggingFace</span><span class="chip">FinBERT</span><span class="chip">spaCy</span><span class="chip">NER</span><span class="chip">Sentiment Analysis</span><span class="chip">OpenAI API</span><span class="chip">Multilingual Models</span></div></td></tr>
+    <tr class="fade"><td class="sk-label">MLOps</td><td><div class="sk-chips"><span class="chip">FastAPI</span><span class="chip">Docker</span><span class="chip">AWS S3/EC2</span><span class="chip">Git</span><span class="chip">CI/CD</span><span class="chip">Streamlit</span><span class="chip">HuggingFace Spaces</span></div></td></tr>
+    <tr class="fade"><td class="sk-label">Data & BI</td><td><div class="sk-chips"><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">SHAP</span><span class="chip">Plotly</span><span class="chip">Tableau</span><span class="chip">Power BI</span><span class="chip">SQL CTEs</span></div></td></tr>
+    <tr class="fade"><td class="sk-label">Evaluation</td><td><div class="sk-chips"><span class="chip">ROC-AUC</span><span class="chip">F1 Score</span><span class="chip">mIoU</span><span class="chip">Precision-Recall</span><span class="chip">KS-Test Drift</span><span class="chip">Cross-Validation</span></div></td></tr>
+  </table>
+</div>
+</div>
 
-<!-- ── PROJECTS ── -->
-<section id="projects">
-  <div class="section-label">Projects</div>
-  <h2>7 end-to-end projects</h2>
-  <p class="section-sub">Every project has real metrics, real data, and a live GitHub repo. No tutorials, no toy datasets.</p>
-  <div class="projects-grid">
+<!-- PROJECTS -->
+<div id="projects">
+<div class="section">
+  <div class="fade">
+    <div class="section-label">// portfolio</div>
+    <h2 class="section-title">Selected Projects</h2>
+    <p class="section-sub">9 end-to-end systems. Click any to view on GitHub.</p>
+  </div>
+  <div class="project-list">
 
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-emoji">🔐</div>
-        <div class="project-links">
-          <a href="https://github.com/BARA-LUCH/financial-fraud-detection" target="_blank" class="project-link">GitHub</a>
+    <div class="project-item fade">
+      <div class="project-num">01</div>
+      <div class="project-body">
+        <div class="project-title">Financial Fraud Detection System</div>
+        <div class="project-desc">4-model pipeline on 500K+ PaySim transactions — XGBoost (supervised), Isolation Forest (unsupervised), Autoencoder (deep learning), Graph-XGBoost (network-aware). 8 SQL queries revealing account-drain transactions carry 97.8% fraud rate. SHAP waterfall explainability. FastAPI + Docker deployment.</div>
+        <div class="project-chips"><span class="pchip">XGBoost</span><span class="pchip">Isolation Forest</span><span class="pchip">Autoencoder</span><span class="pchip">Graph-XGBoost</span><span class="pchip">SHAP</span><span class="pchip">FastAPI</span><span class="pchip">Docker</span><span class="pchip">SQLite</span></div>
+      </div>
+      <div class="project-meta">
+        <a href="https://github.com/BARA-LUCH/financial-fraud-detection" target="_blank" class="project-link-btn">GitHub →</a>
+        <div class="project-metrics">
+          <div class="pm-row"><span>ROC-AUC </span>0.991</div>
+          <div class="pm-row"><span>Txns </span>500K+</div>
+          <div class="pm-row"><span>Revenue </span>84K+</div>
         </div>
       </div>
-      <div class="project-title">Financial Fraud Detection System</div>
-      <div class="project-desc">4-model fraud detection pipeline on 500K+ transactions — XGBoost, Isolation Forest, Autoencoder, and Graph-enhanced XGBoost — with 8 SQL queries and SHAP explainability.</div>
-      <div class="project-metrics">
-        <span class="metric-chip">ROC-AUC 0.991</span>
-        <span class="metric-chip">500K+ transactions</span>
-        <span class="metric-chip">$284K revenue protected</span>
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">XGBoost</span><span class="stack-tag">PyTorch</span>
-        <span class="stack-tag">SQL</span><span class="stack-tag">SHAP</span><span class="stack-tag">Streamlit</span>
-      </div>
-      <div class="project-date">Jan 2026 – Present</div>
     </div>
 
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-emoji">🏥</div>
-        <div class="project-links">
-          <a href="https://github.com/BARA-LUCH/healthcare-analytics" target="_blank" class="project-link">GitHub</a>
+    <div class="project-item fade">
+      <div class="project-num">02</div>
+      <div class="project-body">
+        <div class="project-title">U.S. Healthcare Cost & Efficiency Analyzer</div>
+        <div class="project-desc">Data science pipeline on CMS Medicare data across all 50 US states. Composite Hospital Value Score combining satisfaction, readmission, mortality, and cost efficiency. 8 SQL analytical queries (CTEs, window functions, JOINs) identifying hospitals charging 50%+ above national average. 7-sheet stakeholder Excel report.</div>
+        <div class="project-chips"><span class="pchip">SQL</span><span class="pchip">XGBoost</span><span class="pchip">CMS Data</span><span class="pchip">Plotly</span><span class="pchip">Streamlit</span><span class="pchip">openpyxl</span><span class="pchip">FastAPI</span></div>
+      </div>
+      <div class="project-meta">
+        <a href="https://github.com/BARA-LUCH/healthcare-analytics" target="_blank" class="project-link-btn">GitHub →</a>
+        <div class="project-metrics">
+          <div class="pm-row"><span>ROC-AUC </span>0.84</div>
+          <div class="pm-row"><span>States </span>50</div>
+          <div class="pm-row"><span>SQL Queries </span>8</div>
         </div>
       </div>
-      <div class="project-title">U.S. Healthcare Cost & Efficiency Analyzer</div>
-      <div class="project-desc">BI dashboard on CMS Medicare data across all 50 US states — identifying overcharging hospitals, quality gaps, and cost inefficiencies via 8 SQL queries and interactive maps.</div>
-      <div class="project-metrics">
-        <span class="metric-chip">50 US states</span>
-        <span class="metric-chip">8 SQL queries</span>
-        <span class="metric-chip">Excel export</span>
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">SQL</span><span class="stack-tag">Plotly</span>
-        <span class="stack-tag">Streamlit</span><span class="stack-tag">openpyxl</span><span class="stack-tag">CMS Data</span>
-      </div>
-      <div class="project-date">Jan 2026 – Present</div>
     </div>
 
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-emoji">📊</div>
-        <div class="project-links">
-          <a href="https://github.com/BARA-LUCH/customer-churn-dashboard" target="_blank" class="project-link">GitHub</a>
-          <a href="https://huggingface.co/spaces/bara-luch/customer-churn-dashboard" target="_blank" class="project-link live">Live Demo ↗</a>
+    <div class="project-item fade">
+      <div class="project-num">03</div>
+      <div class="project-body">
+        <div class="project-title">Customer Churn Prediction Dashboard</div>
+        <div class="project-desc">3-model comparison (XGBoost, Random Forest, Logistic Regression) on 71,047 US telecom customers (Cell2Cell, 58 features) with 5-fold CV. SHAP explainability surfaces top churn drivers per customer. Business impact calculator. Live-deployed on HuggingFace Spaces.</div>
+        <div class="project-chips"><span class="pchip">XGBoost</span><span class="pchip">Random Forest</span><span class="pchip">SHAP</span><span class="pchip">Streamlit</span><span class="pchip">HuggingFace Spaces</span><span class="pchip">FastAPI</span><span class="pchip">Docker</span></div>
+      </div>
+      <div class="project-meta">
+        <a href="https://huggingface.co/spaces/bara-luch/customer-churn-dashboard" target="_blank" class="project-link-btn">Live Demo →</a>
+        <div class="project-metrics">
+          <div class="pm-row"><span>ROC-AUC </span>0.96</div>
+          <div class="pm-row"><span>Customers </span>71,047</div>
+          <div class="pm-row"><span>Net Saved </span>42K</div>
         </div>
       </div>
-      <div class="project-title">Customer Churn Prediction Dashboard</div>
-      <div class="project-desc">3 churn models on 71,047 US telecom customers with SHAP explainability and a business impact calculator showing revenue saved per retention campaign.</div>
-      <div class="project-metrics">
-        <span class="metric-chip">ROC-AUC 0.791</span>
-        <span class="metric-chip">71K customers</span>
-        <span class="metric-chip">$242K net profit</span>
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">XGBoost</span><span class="stack-tag">Random Forest</span>
-        <span class="stack-tag">SHAP</span><span class="stack-tag">Streamlit</span>
-      </div>
-      <div class="project-date">Jan 2026 – Present</div>
     </div>
 
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-emoji">📈</div>
-        <div class="project-links">
-          <a href="https://github.com/BARA-LUCH/stock-prediction-explainability" target="_blank" class="project-link">GitHub</a>
+    <div class="project-item fade">
+      <div class="project-num">04</div>
+      <div class="project-body">
+        <div class="project-title">Stock Price Prediction & Explainability</div>
+        <div class="project-desc">Multi-model forecasting for 45+ assets (US equities, Israeli stocks, crypto, ETFs) using 38 engineered technical indicators (RSI, MACD, Bollinger Bands). Chronological train/test split prevents data leakage. SHAP waterfall charts per asset. Paired with FinBERT NLP API for BUY/SELL/HOLD signals.</div>
+        <div class="project-chips"><span class="pchip">LSTM</span><span class="pchip">XGBoost</span><span class="pchip">Random Forest</span><span class="pchip">SHAP</span><span class="pchip">yfinance</span><span class="pchip">PyTorch</span></div>
+      </div>
+      <div class="project-meta">
+        <a href="https://github.com/BARA-LUCH/stock-prediction-explainability" target="_blank" class="project-link-btn">GitHub →</a>
+        <div class="project-metrics">
+          <div class="pm-row"><span>Assets </span>45+</div>
+          <div class="pm-row"><span>Indicators </span>38</div>
+          <div class="pm-row"><span>Models </span>3</div>
         </div>
       </div>
-      <div class="project-title">Stock Price Prediction & Explainability</div>
-      <div class="project-desc">Forecasts 45+ assets (US stocks, Israeli equities, crypto, ETFs) using 38 technical indicators with XGBoost, Random Forest, and LSTM models.</div>
-      <div class="project-metrics">
-        <span class="metric-chip">45+ assets</span>
-        <span class="metric-chip">38 indicators</span>
-        <span class="metric-chip">SHAP waterfall</span>
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">XGBoost</span><span class="stack-tag">LSTM</span>
-        <span class="stack-tag">PyTorch</span><span class="stack-tag">yfinance</span><span class="stack-tag">SHAP</span>
-      </div>
-      <div class="project-date">Jan 2026 – Present</div>
     </div>
 
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-emoji">🔍</div>
-        <div class="project-links">
-          <a href="https://github.com/BARA-LUCH/crime-news-analyzer" target="_blank" class="project-link">GitHub</a>
+    <div class="project-item fade">
+      <div class="project-num">05</div>
+      <div class="project-body">
+        <div class="project-title">Dual-Stream ViT — RGB-Thermal Segmentation  <span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);font-weight:400">[SKKU Research]</span></div>
+        <div class="project-desc">Two parallel ViT encoders fusing RGB and thermal modalities. Thermal encoder inherits ImageNet weights from RGB encoder (excluding input projection). Concatenated patch tokens → MLP decoder → bilinear upsampling → dense segmentation map. 7 classes, 9 semantic categories.</div>
+        <div class="project-chips"><span class="pchip">PyTorch</span><span class="pchip">ViT</span><span class="pchip">SegFormer</span><span class="pchip">AAU RainSnow Dataset</span><span class="pchip">OpenCV</span></div>
+      </div>
+      <div class="project-meta">
+        <a href="https://github.com/BARA-LUCH/dual-stream-vit-segmentation" target="_blank" class="project-link-btn">GitHub →</a>
+        <div class="project-metrics">
+          <div class="pm-row"><span>mIoU </span>43.29%</div>
+          <div class="pm-row"><span>Bicycle IoU </span>+37%</div>
+          <div class="pm-row"><span>Image Pairs </span>2,197</div>
         </div>
       </div>
-      <div class="project-title">AI Crime News Analyzer</div>
-      <div class="project-desc">Multilingual NLP pipeline (Hebrew, Arabic, English) extracting entities, sentiment, and locations from news articles — with interactive crime heatmaps.</div>
-      <div class="project-metrics">
-        <span class="metric-chip">3 languages</span>
-        <span class="metric-chip">OCR + NER</span>
-        <span class="metric-chip">Interactive maps</span>
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">HuggingFace</span><span class="stack-tag">spaCy</span>
-        <span class="stack-tag">Tesseract</span><span class="stack-tag">Folium</span><span class="stack-tag">GPT-4o</span>
-      </div>
-      <div class="project-date">Mar 2025 – Jan 2026</div>
     </div>
 
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-emoji">🌡️</div>
-        <div class="project-links">
-          <a href="https://github.com/BARA-LUCH/dual-stream-vit-segmentation" target="_blank" class="project-link">GitHub</a>
+    <div class="project-item fade">
+      <div class="project-num">06</div>
+      <div class="project-body">
+        <div class="project-title">AI Crime News Analyzer</div>
+        <div class="project-desc">Multilingual NLP pipeline (Hebrew, Arabic, English) extracting named entities, sentiment, and geolocations from news articles and images via Tesseract OCR. bert-base-multilingual NER, GPT-4o summarization, interactive Folium crime heatmaps with MarkerClusters.</div>
+        <div class="project-chips"><span class="pchip">HuggingFace</span><span class="pchip">spaCy</span><span class="pchip">Tesseract OCR</span><span class="pchip">Folium</span><span class="pchip">OpenAI API</span><span class="pchip">Streamlit</span></div>
+      </div>
+      <div class="project-meta">
+        <a href="https://github.com/BARA-LUCH/crime-news-analyzer" target="_blank" class="project-link-btn">GitHub →</a>
+        <div class="project-metrics">
+          <div class="pm-row"><span>Languages </span>3</div>
+          <div class="pm-row"><span>Models </span>BERT + GPT-4o</div>
         </div>
       </div>
-      <div class="project-title">Dual-Stream Vision Transformer</div>
-      <div class="project-desc">RGB-thermal semantic segmentation for adverse weather perception. Trained at SKKU research lab on 2,197 aligned image pairs.</div>
-      <div class="project-metrics">
-        <span class="metric-chip">IoU 42.94% → 43.29%</span>
-        <span class="metric-chip">+11% Bicycle IoU</span>
-        <span class="metric-chip">2,197 image pairs</span>
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">PyTorch</span><span class="stack-tag">ViT</span>
-        <span class="stack-tag">SegFormer</span><span class="stack-tag">OpenCV</span>
-      </div>
-      <div class="project-date">Mar 2025 – Jan 2026</div>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-header">
-        <div class="project-emoji">😴</div>
-        <div class="project-links">
-          <a href="https://github.com/BARA-LUCH/wake-wise" target="_blank" class="project-link">GitHub</a>
-        </div>
-      </div>
-      <div class="project-title">Wake-Wise — Drowsiness Detection</div>
-      <div class="project-desc">Real-time drowsiness detection at 30+ FPS using EAR/MAR facial landmark analysis. Deployed as Flask app with adaptive engagement quizzes.</div>
-      <div class="project-metrics">
-        <span class="metric-chip">30+ FPS</span>
-        <span class="metric-chip">~100 users tested</span>
-        <span class="metric-chip">Flask deployed</span>
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">OpenCV</span><span class="stack-tag">MediaPipe</span>
-        <span class="stack-tag">Flask</span><span class="stack-tag">EAR/MAR</span>
-      </div>
-      <div class="project-date">Mar 2025 – Jan 2026</div>
     </div>
 
   </div>
-</section>
+</div>
+</div>
 
-<!-- ── EXPERIENCE ── -->
-<section id="experience">
-  <div class="section-label">Experience & Education</div>
-  <h2>Background</h2>
-  <p class="section-sub">Research experience in South Korea, graduating April 2026.</p>
-  <div class="timeline">
-    <div class="timeline-item fade-in">
-      <div class="timeline-date">Mar 2025 – Jan 2026</div>
-      <div class="timeline-title">Applied AI & ML Researcher</div>
-      <div class="timeline-org">Sungkyunkwan University (SKKU) — Research Exchange · Seoul, South Korea</div>
-      <ul class="timeline-bullets">
-        <li>Built 4+ end-to-end AI systems covering computer vision, NLP, and multimodal learning</li>
-        <li>Developed full ML pipelines: ingestion, preprocessing, training, evaluation, deployment</li>
-        <li>Implemented dual-stream ViT for RGB-thermal segmentation; improved mean IoU 42.94% → 43.29%</li>
-        <li>Collaborated with international teams delivering metrics-driven reproducible results</li>
-      </ul>
-    </div>
-    <div class="timeline-item fade-in">
-      <div class="timeline-date">Sep 2022 – Apr 2026</div>
-      <div class="timeline-title">B.Sc. Data Science & Business (Finance)</div>
-      <div class="timeline-org">Memorial University of Newfoundland · Canada</div>
-      <ul class="timeline-bullets">
-        <li>Relevant coursework: Machine Learning, Statistical Analysis, Financial Modeling, Database Systems, Business Analytics</li>
-        <li>Research exchange at SKKU, South Korea — Mar 2025 to Jan 2026</li>
-        <li>Executive — Memorial University Volleyball Club</li>
-        <li>2× Ideathon Participant · Hackathon Participant</li>
-      </ul>
-    </div>
+<!-- APIs -->
+<div class="full-bleed" id="apis">
+<div class="section">
+  <div class="fade">
+    <div class="section-label">// production services</div>
+    <h2 class="section-title">REST APIs</h2>
+    <p class="section-sub">3 inference services. FastAPI + Docker + KS-test drift monitoring.</p>
   </div>
-</section>
-
-<!-- ── CONTACT ── -->
-<section id="contact">
-  <div class="section-label">Contact</div>
-  <div class="contact-wrap">
-    <div class="contact-info fade-in">
-      <h2>Let's work<br>together</h2>
-      <p>I'm actively looking for Data Scientist, ML Engineer, and Business Analyst roles — remote or relocation. Based in Tel Aviv, Israel and St. John's, Canada — open to opportunities worldwide.</p>
-      <div class="contact-links">
-        <a href="mailto:reapaerx@gmail.com" class="contact-link">
-          <span class="contact-icon">✉️</span> reapaerx@gmail.com
-        </a>
-        <a href="https://linkedin.com/in/bara-luch" target="_blank" class="contact-link">
-          <span class="contact-icon">💼</span> linkedin.com/in/bara-luch
-        </a>
-        <a href="https://github.com/BARA-LUCH" target="_blank" class="contact-link">
-          <span class="contact-icon">💻</span> github.com/BARA-LUCH
-        </a>
-        <a href="https://huggingface.co/spaces/bara-luch/customer-churn-dashboard" target="_blank" class="contact-link">
-          <span class="contact-icon">🤗</span> Live Demo — Churn Dashboard
-        </a>
-        <div class="contact-link" style="cursor:default;">
-          <span class="contact-icon">📍</span> Tel Aviv, Israel &amp; St. John's, Canada · Available worldwide
-        </div>
-        <div class="contact-link" style="cursor:default;">
-          <span class="contact-icon">📞</span> 053-274-1955
-        </div>
+  <div class="api-grid">
+    <div class="api-card fade">
+      <div class="api-live"><span class="api-dot"></span>DEPLOYED</div>
+      <div class="api-title">Churn Prediction API</div>
+      <div class="api-desc">XGBoost churn inference with batch scoring, SHAP explainability, SQLite audit log, and KS-test drift detection. Containerized with Docker.</div>
+      <div class="api-routes">
+        <div class="api-route"><span class="api-method">POST</span>/predict</div>
+        <div class="api-route"><span class="api-method">POST</span>/predict/batch</div>
+        <div class="api-route"><span class="api-method">GET</span>/monitor/drift</div>
+        <div class="api-route"><span class="api-method">GET</span>/stats</div>
       </div>
+      <div class="api-badges"><span class="api-badge">ROC-AUC 0.96</span><span class="api-badge">&lt;5ms</span><span class="api-badge">1000/batch</span><span class="api-badge">11 tests ✓</span></div>
     </div>
-    <div class="contact-form fade-in">
-      <form onsubmit="handleSubmit(event)">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" placeholder="John Smith" required />
-        </div>
-        <div class="form-group">
-          <label>Your Email</label>
-          <input type="email" placeholder="john@company.com" required />
-        </div>
-        <div class="form-group">
-          <label>Company / Organization</label>
-          <input type="text" placeholder="Company name" />
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea placeholder="Tell me about the role or opportunity..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
-          Send Message →
-        </button>
-        <p class="form-note">* Form sends via mailto — your email client will open.</p>
-      </form>
+    <div class="api-card fade">
+      <div class="api-live"><span class="api-dot"></span>DEPLOYED</div>
+      <div class="api-title">Healthcare Risk API</div>
+      <div class="api-desc">30-day patient readmission risk scoring + hospital benchmarking vs national CMS averages. 8 SQL analytics queries with CTEs and window functions.</div>
+      <div class="api-routes">
+        <div class="api-route"><span class="api-method">POST</span>/patient/risk</div>
+        <div class="api-route"><span class="api-method">POST</span>/patient/batch</div>
+        <div class="api-route"><span class="api-method">GET</span>/hospital/benchmark</div>
+        <div class="api-route"><span class="api-method">GET</span>/analytics/{query}</div>
+      </div>
+      <div class="api-badges"><span class="api-badge">ROC-AUC 0.84</span><span class="api-badge">13 features</span><span class="api-badge">500/batch</span><span class="api-badge">17 tests ✓</span></div>
+    </div>
+    <div class="api-card fade">
+      <div class="api-live"><span class="api-dot"></span>DEPLOYED</div>
+      <div class="api-title">Multilingual NLP API</div>
+      <div class="api-desc">Hebrew · Arabic · English sentiment analysis, FinBERT financial scoring with BUY/SELL/HOLD signals, NER, and extractive TF-IDF summarization.</div>
+      <div class="api-routes">
+        <div class="api-route"><span class="api-method">POST</span>/analyze</div>
+        <div class="api-route"><span class="api-method">POST</span>/finance/sentiment</div>
+        <div class="api-route"><span class="api-method">POST</span>/entities</div>
+        <div class="api-route"><span class="api-method">POST</span>/summarize</div>
+      </div>
+      <div class="api-badges"><span class="api-badge">3 languages</span><span class="api-badge">RTL support</span><span class="api-badge">100/batch</span><span class="api-badge">20 tests ✓</span></div>
     </div>
   </div>
-</section>
+</div>
+</div>
 
-<!-- ── FOOTER ── -->
+<!-- EXPERIENCE -->
+<div id="experience">
+<div class="section">
+  <div class="fade">
+    <div class="section-label">// background</div>
+    <h2 class="section-title">Experience & Education</h2>
+  </div>
+  <div class="exp-item fade">
+    <div class="exp-header">
+      <div class="exp-left">
+        <div class="exp-role">ML Research Engineer — Exchange Program</div>
+        <div class="exp-org">Sungkyunkwan University (SKKU) · Suwon, South Korea</div>
+      </div>
+      <div class="exp-date">MAR 2025 — JAN 2026</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Architected a <strong>dual-stream Vision Transformer</strong> fusing RGB and thermal modalities for adverse-weather semantic segmentation on 2,197 aligned image pairs — mean IoU <strong>42.94% → 43.29%</strong>, +37% Bicycle class gain vs. SegFormer baseline.</li>
+      <li>Designed and evaluated <strong>4+ full ML pipelines</strong> (data ingestion → feature engineering → training → deployment) in an international cross-disciplinary team.</li>
+      <li>Leveraged <strong>Kaggle benchmarks</strong> for model evaluation and reproducibility across vision and NLP research tracks.</li>
+    </ul>
+  </div>
+  <div class="exp-item fade">
+    <div class="exp-header">
+      <div class="exp-left">
+        <div class="exp-role">B.Sc. Data Science & Business (Finance)</div>
+        <div class="exp-org">Memorial University of Newfoundland · Canada</div>
+      </div>
+      <div class="exp-date">SEP 2022 — APR 2026</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Research exchange at <strong>SKKU, South Korea</strong> (Mar 2025 – Jan 2026).</li>
+      <li>Coursework: Machine Learning · Statistical Analysis · Financial Modeling · Database Systems · Business Analytics · Data Visualization.</li>
+      <li>Languages: <strong>English (Fluent)</strong> · <strong>Hebrew (Native)</strong> · <strong>Arabic (Native)</strong></li>
+    </ul>
+  </div>
+
+  <div class="resume-banner fade">
+    <div class="resume-info">
+      <div class="resume-label">// resume</div>
+      <div class="resume-name">Bara_Luch_Resume_Final.docx</div>
+      <div class="resume-meta">ML Engineer · NLP · Data Scientist · 2 pages · ATS-optimized</div>
+    </div>
+    <a href="#" onclick="downloadResume();return false;" class="btn btn-green">↓ Download Resume</a>
+  </div>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div class="full-bleed">
+<div id="contact-section">
+  <div class="section-label" style="justify-content:center;display:flex;margin-bottom:16px">// contact</div>
+  <h2 class="contact-title">Let's Build<br><span>Something.</span></h2>
+  <p class="contact-sub">Open to ML Engineer · NLP Engineer · Data Scientist roles in Israel and internationally.</p>
+  <div class="contact-row">
+    <a href="https://github.com/BARA-LUCH" target="_blank" class="btn btn-outline">↗ GitHub</a>
+    <a href="https://linkedin.com/in/bara-luch" target="_blank" class="btn btn-outline">↗ LinkedIn</a>
+    <a href="https://huggingface.co/bara-luch" target="_blank" class="btn btn-outline">⚡ HuggingFace</a>
+    <a href="https://bara-luch.github.io" target="_blank" class="btn btn-outline">🌐 Portfolio</a>
+  </div>
+  <a href="mailto:reapaerx@gmail.com" class="contact-email">reapaerx@gmail.com</a>
+</div>
+</div>
+
 <footer>
-  <p>Built by <strong>Bara Luch</strong> · ML Engineer & Data Scientist · Tel Aviv, Israel &amp; St. John's, Canada</p>
-  <p style="margin-top:0.5rem;">
-    <a href="https://github.com/BARA-LUCH">GitHub</a> ·
-    <a href="https://linkedin.com/in/bara-luch">LinkedIn</a> ·
-    <a href="https://huggingface.co/spaces/bara-luch/customer-churn-dashboard">Live Demo</a>
-  </p>
+  <span class="fl">bara.luch</span>
+  <span>ML Engineer · NLP · Data Science</span>
+  <span>Tel Aviv &amp; St. John's · © 2026</span>
 </footer>
 
 <script>
-  // Fade-in on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+// Resume download — embedded as base64
+const RESUME_B64 = "UEsDBAoAAAAAAHNJa1wAAAAAAAAAAAAAAAAFAAAAd29yZC9QSwMECgAAAAAAc0lrXAAAAAAAAAAAAAAAAAsAAAB3b3JkL19yZWxzL1BLAwQKAAAACABzSWtcc4zW5e8AAACeAwAAHAAAAHdvcmQvX3JlbHMvZG9jdW1lbnQueG1sLnJlbHOtk91KAzEQhV8lzL2bbdUi0rQ3IvRW1gdIs7M/uMmEZCr27Y3Y1hTK4kUu50xy5sscst5+2Ul8YogjOQWLqgaBzlA7ul7Be/N69wTbzfoNJ83pRBxGH0W64qKCgdk/SxnNgFbHijy61OkoWM2pDL302nzoHuWyrlcy5B5w7Sl2rYKwaxcgmqPH/3hT140GX8gcLDq+MUJGPk4Yk6MOPbKC37pKPiBvj1+WHO8Odo8h7fGP4CLNQdyXhOiI2BHna7hIcxAPRYNA5vToPIqTMofwWBLBkP1pZQhnZQ5hVTYKx43eT5hHcZLOEPLqo22+AVBLAwQKAAAACABzSWtclWgXRkAVAACbCgEAEQAAAHdvcmQvZG9jdW1lbnQueG1s7T3bctu4kr+Ccp1MyRXJuvgen8xZWbYSj+VEYzmZ3UeYhEQckwQHAC0rdWprn/YDdvdf9n0/5XzJdgMkJdmK41t8oaEHSbw1gUajb+hu/PVvF1FIzplUXMTvl5orjSXCYk/4PB69X/py0q1tLRGlaezTUMTs/dKEqaW//frX8TtfeGnEYk0i793BKBaSnoZwfdxcI+PmOhknzbUlAsBj9W6ceO+XAq2Td/W68gIWUbUScU8KJYZ6xRNRXQyH3GP1sZB+vdVoNsy/RAqPKQUt6dD4nKocXHQVmkhYDBeHQkZUw6Ec1SMqz9KkBtATqvkpD7meAOzGRg5GvF9KZfwuA1ErGoSPvLMNyn7yJ+RN3msf2cuwY95YlyyENohYBTyZduOu0OBikAM5v64T51E4HYLm2v3GYE/SMfxMAd6k+b59KApty6+H2GzcYEQQRPHETZow/868JRHl8fTFd0LNDHKb67cD0LoMIBndb3A+SJEmU2j8ftAO4rMCFs75W8DKBnm2a+p+jRkENClmoHdxM2AZ3SG8tboXUKnZxRRG89ZA1uvb9a2rgFp3AAQdbDWvglq9NaiNOrbqCqAb0vIlQNCqK5BuSNSXIS3o3MbdILWuQtq8G6TVq5C27gbpCjkBIzm7Ayg+nWM0WvVvDWGzHgmfhatTZtjc8NgNp0c+17ayyVr3pv1BOPyG7cnhbBRw+Gx77taYGQDK135wKyitnDfX8VmqaUBVMAvxduwM5msObhIBjlDxORX+BH8T89WX+KMS6sHAELjKQPjAS0CPGr+jQ81AaVjdWKrjXX/34Nw5Dd8veSDMmcSz9QKG/cr+d0WsFUJQHgdu3pachgjRUzMHjCrdVpzOnArasSruNy89td8dZX49mmR/RChk3pzm7mp7Y9fer77lZ1e38jMdNX+uXjRUI2pN96HPiWSKyXO29Otu+7hNel86H/FWbR+wfb0d5tbWnhBzN0BRc/sqiuy5H6LoiHoBjxnpMSpjxMB+PIJjJgn5v/8l5FOvf+nMHlAzGXgcEMCVvidiVxvPBbFr5nMFsRsLELtxI8Q21ldrrc21WnN7fd1iTjKaUCYv/mUEal+I09yeP2EhaZ/z8yo5UJLCwS80SnbIQK+Q30QQ/0IToXZUlYD5QX16T4xvPhuMN3fXu+29B8R4CMKMgcVoGCiP66dU0lqYesEcyl5o54ilFTLiOkhPTReRu9WucLcX3r8gHQG3GQ3hMnSynGNYdGolG00ufjirk11fWrGvNTCO7MVomYTM9BVbXsgHgu17v7Rl/thmtPIZngG6yiaaq7OMYr3xzPWCVuPqQLQaNxqIDvSXdESUMM1iEGXqvvrBIlx9590LX6VPw+wna/dp+AeA15MEnvUvKL5rDIhobKxlvYY7dkElZFKZI5HkKIhFPEsQXfPJCSJ7OGRDfZv754nuJk9IPgpu9QoOhOGzj98lbJpqkT+yNvvI15s/Up9HW30e4R8k9/HvCH47Iswwvrm5at/26Kfrc63Stpme/c4a7S0kkgKs9kpEIvVL/VGBD5eHPISn97f297uG2VmNJgRlNkfBEZXT7l/G1fr6XG8vX9643LnvPZ/3ZTGAetGO+nTwZrnLc7DIbmBl3F3yXbYyFjDB+pS6HY07Gn95NL7HWOII3BF4aQkcfUHWNXHCLjRpxzScaO4tUp4drTtaf9G03pfCTz1cLCft/oEjcUfipSPxI1y4I/sXSUh5TG1kCqkMPrb7y47cHbmXjdy7jOpUsmI161olvV44XJzbxdH8i6X5we+9TGN3yroj89KSuQlJ+MpVSkP+zUS4Oip3VF42Kv/IaKgDj4IO47i5o/PS0nlX0tQne0wzz7FyR+JlJHEMPUmhY6i0OBJ3JF5CEj9KQ81DHo9AKSftgx+6Wmy0y2U0XR92tTBE7TZhVy7A7icF2PWlGGLelABFlQzSKKJycocYu82rseI/HV/ziDGfK9Nic8G02LzZtOhNw+lp7F+KpicjSf0ULFjAQjuRPCStRmuDVHZXBt7KzL0ey9w6uykQKCCa/PM//od0eUzh0jIZcx0QfCWVXkDYRcKkfYhqMjg8/FIlA5HCLYeAZApwmeKjmPlkm7DYr2lRgx8CLVUTpVmkCI+9MMVUXLJKkunC2PH+4MSsjpFKFzHbPyBvyZ7wzphcJtDz2OQTfOr1q8TLBd65EXhVEkyNGcnVGVGeQI9s1SBlaDRAP9cAV8iJLFgJjxGBIVdBlXxkp5KN7TNtSU+5Z/BAzykPMQ2YABVBP6q2DfPoBmxIETLsXB52jzdwZMax8SHQMJys3IFoHYd6CRzqhHlBzD1kT2egUdw3Anh1454D7SKAn20EcCNr4Nzpre0i6PuOUbo52Nejs+93W932w+vszcZ9lfatHyjtJdDHexTl52hhqsOtjM2c8F8R4Xa3uu1uxxHurXTke8ReTXSAOuLgd1Ddjquk8/ZtlfwGWt3AkzxZlHJ6n1V7x4ZfOzU/qlukR+pkr+eYsGPCz5sJ/+uHXSGUBgYMZjGgpQsmDx72BidH1cxvDXY5jRVWOYLxqpI2aNumaJc5OlDCVpuaPipGXGkw0o/ZSFrvkOPljpe/WF7elTRiYyHPnE7t2PkzZ+f9yYmQXlAlJyxWQnZDMa6iI/SM6xqiHtTtj7byQheevMTYuzze3T8+gQfYqGtOVtG/21nk0nfs27Hvl8G+j3qfE5Wto3RCkfqOizsu/ry5eLbMVs1W2UDl/mNAKoPVKtnvtJar5AMHNbtzUO/sAa/WktEoxDPdkKoz0L95nF44lu1Y9otl2Wb5Nlv5viakxLFrx66fA7vuY71y0J8/pVF/Ahz5Y7tvvNqk0jnZh/NjHvtiTIZpbOIcFHDwfih0CPeeYPwCTeGEGDMJ1A4s/uQat6Fj3o55P3PmvQ83pw+SneM4t6Pcn8u5jz93au0vHVCdm8CCJfOMv7t2zDwahqB213fJCVPaRKx1pFCq9pWG3DfUDdq55IDsIoOBVA4HNQ23X5NXn/FvG01S4M7FmL3oGLP9IvLShXwtfOCZhnxtN3OEz0eCrTfuFfI1BVtqsfUDgdS4Vh79SBo1rhdGN0u+WMCTmrM86UlY0g3k2YJC+M2bFcI/6pHjPB68iD+v7F94AY1HbF4uPZLIXqxe3r2LtrbyII1HZ5M0PhvTmHyJudlSSk9MXPiV0Pf76qE5Q3AT+iVM6NmkK/O6R5nl3H4vmuUb5vOQKxpUYsLIOlD7f5PfYAJg9sgddc5koCchyxvQ40r3qaQjSZPAti9OI3snD8/D/L5Gce3AL5SlrO3FA1dHq7U1M1itrUcZmJ+b59MGTstR/2c+oeRx+OvtBcrd++enNKwps8SwIBjoKeTJQ/eQDDG3akSOP+yazCAdMBnRkETCB1NPc6ZMehH1UcSw2phRvIMoFtEYg5wUG+FeeZlJqCXlmGIFeGpVm9ubBGCYnCse0REjCeXSJnHxKJHiHF8cMZjBB+ILGUrgnGutle21N+Sf//lfJaSmtdWV1vabUlCNyb1722y+IV5IlSIjGHdyrlamsRPklCoWAjX8OLnMMeF7DUaR2Ijzl1n3IxyVcP68BW4VhpizmfDEEJcqxWyqAIminw3YJnK+YVbDj01r+JnzhrvmBz5LQjFB3rtM0hiUWNx4KZzmw3oiVuYBbZI/gcnOJX0SDTJth4QM+DqwZp8c0tEIJuEpi70Ad3O1fN9se5cTFbYPaUwymx6b7fPqskfL6tkbsNDqdle2T+tL8Xe4tDif1Hn8nMevBMNYUgfBk3r8HtodZotBwKvJpXpaZGCqOjjf12si7fL7vnJ3l/F99fF0/ONM0bssty6s9PCouHvwfQmzXC90oF/O2sJzM3ldpJIlEizjhQ9oiNZmnsYIJ/P7e49rhv/ywjDw18asOpv355pM+epOSf2OazVreBXFgQqDtxT2LvQH5OrhW9KnkwGP0LCNFbXRgcY9mE+2ikoTeIYr5i9fzbUklTSeu2FuCvu4UVWYGSwYNT43jSsx05jUVqNjKtmyeatxam2Z0MU/UwxpUGDqnoNVjbOJep5IY13z0aaeb7FHpZyUkAq3N1e23mRlqiTVpaC9HWJ4bObYQLMWRriMzrIstos0Vra3m2UYOedH/skIPoiSkKFDEeaDUXHGMOflkIYh8QIqtfUIArutwTM+t3KJzW2ss5O5JVEsq1JK5lzT4/EQtA+sr4cXuFcK5mgl4CnVXjAtVdif+Hap73wm9jNTfUEycE1CYVJqqyQLACW+iQyNRMz1TL1DqxmjY1rjKqHMNjEwojex/kSgGy3wANWeElLPX1pba6D20DhOja/+nMVpKSjnvmsAzUXmpisseJsHnM+5BMNYUsdcqXzOX1YGK2Rmm5IO2pM2XXN/OOSm7O7Ebl7ybaEnyHmgS0vozgPtPNDfxx16lub8xp2jATlCWwr5iEn7hpM2OdbcmBc3wAORsDiZXISX/M2ZQ8sZx48VZFVCs8RHylNZvfjdg9I5m+emmeks9TCdkaBvY71BvgyI0hRMV2OLstm1BSzpLxRO149CJVyD2faVhikjA7CPGV4+tTFZCoxZNbQu4SrGYvkRN8X/jOu0Ctaw1BhRO7HGsIdKA5uqC+e8jIQ150wvBTV9p6ZBlfz2+eCTWt4hYFDFmg85UE+QUYwy/jN0kZRwiNcbb94SeirOGSliC6kNKizDgDuv808XrCGmr5VUsm7WVMCYRvFyxgIR4srk/oXH0PmXgEQowxSxXmN2wbxUw1CSQ9wrB2Uc8ARZcD4aMqnVDtynWeznCwS5IvudjXJw3x1SmS5lba1l2/4kwGqAz87J2emqRLVgvdN4ZoSGCQoFk0KlIGNUyspk6/iG1iWCA2xc7QDjO3+Xcj5O5+N0Pk7n+nkNPs65fQ0/9frWnam4Qo7sXJqvia7L79LsslPn0rwr7qaeyKx+Nv79tH+MP/sXWqJHBJRCuztmvuQP1+yuhibw1u5piPfbLQ9dGO2ThNHO7HkZXWH/qIfnG1HaAavmw7WM2dw2cqicLo6csIdFsglyCB5dZhMvlAisRbX75d/qg/1er/7xc28P41vNTqjo9KYh2EcyDVmNxQFuveqb+V1JQM4Z15eQI/gOhUczX1gEsnKybI0qNuUBJ93awV6XqDlWgB7XBYZXEwwvDc+qumR/pmZjlfIRVguMy4mJmMKvcjhIE6rQxnJ+s0dbkAIDNqIYoBdmmx8SKVLDinFR4UvMMSCeKLOrHEzJTI/HeaenGw7TvJILJp7nWeHKeEtg5mbCemYHYhAWxdqFpnLEzAvtFsMcOSXACkiFnQgpqhjnL1DOVEmPAXOgPls2wFC0FIW6zEbFO5nkr82ECUInDYuqZxGFdRtfWPALZDDGv1MgwAdqkvw0NRxGBXC3c944541z3jgj9zU4bzqpAnwCR+0EqYzRos2j9feoCk4FlffeBMa5cF4SdZffheOi0h4kL3puF0w8sWAzy7kM6NkAtdmd1Qb4EuVSo5/AMDjJavDZKKMoobKU+Y2rxDPSzdSfw3gbWQ77GSbYZrPaWNvEqDSNBZhgQnqZRFek0mFh2MKvKlnfykuFqeW5tOnXkda6UYbxxr0XMLBhtUrstgvYswaprNeGIvRJ5+vyjuW284mWRKVyaFgsaiZ2JoBVjEU6MUOzIJgdgtE1tSIrU4sS0sRVwVMGysAAmSQ9DUH4HvWIzyLhfGo/GeX9YgXEOJ1cCvPLG0LrKbwuZ3kmef07ictF1ZXq93KWvxsvVj5qAV2k0ZgqIPlyTClohWryS6h31iM1MxnMghQWxQZzh4BE9tKQamiFCsRYlXCA/9Jaax2SmOky5aMTRVH/NaoQBRuIj2JXpvbx3ZyPU6a27fs8C+p1dWndEoxbgnmRTupSLcEMNCiOwI1Aq55df8mqBMyZ8m4p5jVRuVuKcUsx38fdzFJMb3ByNF+HNl90mdg4xMW7bTpv0IPZEDMp/yYeNqvJit31qNkVlyhTZLyklv/a+ltClWIlCUy0+1ytbs3m9/MYiwKAda9I5XhwUCVH7c5eleyKEOPicEd6Gvsqyzn0AiliaOMIHgntZix14zVSCcjxne/UTMz89qZuosHmjANKrZCOmKm6eDopgujzoGuzTZYJxZ0P0M0Cc+2uWTEbK0yh9M2WOPcOdbuvoevsLGdnlWAYS6qBlsrOah+QjuQRI5+QBbqaa6+RoMtvUj3kjrevzqaajQ4A6wmud0xxtRMG2himJpHPHZOt2BUhTyP89zlhMXCWxanOzsZ6QK18tuY4vZp2mBciuyb3MM8vA0RhUh7uWFud5ufZhdoRE0V22ozGjJfMxrTKZMogGZjFPyZ1DXcvrc23Z/+4Sj70T2prYj6FrZpTjmckEejhOqKJU8OfWtw5NbwUw1hSraVUavgf9IzV/uDKRk8cMxrWTpAX7kkxziIpip35nHL+msjcKedOOb8Geahpd76izo31WWkf9D2jiodUnZmKIO3j+lH7uCg/5PTxnx4B66Fd5Ju4cTJmpx6NME6ufMsbq423pNsflGhtY3/CSFsluHXOMVomxsA5EqkOLp0OR0JyHURqZr8mO+VoktjFDurTxKT+/5nyb9/QQrKRtHCniMm/Y3mOFN5+byvHRdU916i6fT+1JrMzLp1x6YzLF6V1P6lxuVi63d243F0ZeCt2d4xBtkeBjaPbzaP0K3YbeLb8FML8oW1pgnovqMORwDdi/R7M6sOcPzHEZa6hSGM/BNHuDOnXNKXLb0gPWIK2c8sY0u1E3seQdmbg/bKs4Q9WBCPswgtoPGJoAg7SeHQ2SeOzMY1n2VJlcHj4ZblKBsbSOASUUFJZ6BVZdhmsP3ngOiKViuHG5u/IEZYBiBnpZXugwwhp3KRGm/i13KNSJd2irOURBjiaO1Ha4hIYGZgIR7irELbmQYCh7F3kK1cp2IZ2LcyZg2U1B3tZbT2VKV9trOlpllvvMOSbc27Np1dZF+twd5+GBbLePZLj7Odylbwuc6UbpizWy1ZFzYpCVj6ZGpHZyaw8ZH7yCXq/Zj4P6V3Dzz/M99N7QR+aUqfTuBykivHUDMNAzhn5KsKQTU4xGNvQ5iEdAecnxS0iXsy7FPN0JkFGg2+ZsdRqrRmmFaDhtGX/g4UG0wFeLySGg2vb6mSEyo+xN0CcNMydRmMvjqxAKg7R9igOMIwbueJmw0iioRB65nCU6lmTIBl9SqMTMDrMkS88dOwgRBDVfa69ABeNcvaad6uODfAn5g88kmKczK//D1BLAwQKAAAACABzSWtce1h527gCAAA8DQAADwAAAHdvcmQvc3R5bGVzLnhtbL1W21LbMBD9FY/fwZfYgWYITBuagZlOy1CYPiuyHGvQxZVkQvj6SrbkAI6blLi8eS86Omd3E+3ZxRMl3iMSEnM29aPj0PcQgzzDbDn17+/mR6e+JxVgGSCcoam/RtK/OD9bTaRaEyQ9CifXS8YFWBAdXUWJt4pS39OoTE4onPqFUuUkCCQsEAXymJeI6WDOBQVKm2IZUCAeqvIIcloChReYYLUO4jAcOxixDwrPcwzRJYcVRUzV5wOBiEbkTBa4lA5ttQ/aiousFBwiKXUlKGnwKMCshYmSDhDFUHDJc3WsxVhGNZQ+HoX1FyUbgPTfAGIHYMqfcXiJclARJY0pboQ1A2OWL82gk133zltN1LrUTSuBAEsBysL3bOg6m/p3WBFUX8UANcmPgDhvfccCSJT9YC7y3VSPNCGGntQ2/+95XeLAMq6pPLvEdNwkyeeZfO0LbHZg6e0r4QoBM8dRR4UNeNGQSiAnXLjc+OtJ8iV1gpx3FHclNr4DJca9EuMPlhhv6WI8RBdHvRJH/01iNE8uT047EpMtEpMBJCa9EpMhJeLawDMZ/KWnB0pJe6WkHzCQB5If95Iff8CovZf8TyU4W3aoW/eAvBcNVj0/7yX7DUt100becjZRbxPexX3DsZ8GLDQcVEi8briOCYLZQ7fjbWTb7fYxbSnOOVNNYoVvBOZCrzAu99MnG2EFztCvArF7jdU7CGE6Hs3sw1Q5p1lCmnd3d8G3K51zrhhX6BblSOgNr/u05zbDE23KUNIlovgKZxliOyqhF1H1meBle5usdBskFLhUh/w2nPo7PeX9wpWJ7ho2MxPO/xJ2pst+eB1KuxWVAJr/m9UE5LqTeiqMHH01Mk9Na9xWZukGleK2OPZ4Z7eKwy1PVjjEPLXS31bVJXgmw9tUZ+9x6iv0YMP2vvK4L3n+B1BLAwQKAAAAAABzSWtcAAAAAAAAAAAAAAAACQAAAGRvY1Byb3BzL1BLAwQKAAAACABzSWtc6RDqsjkBAACDAgAAEQAAAGRvY1Byb3BzL2NvcmUueG1slZJdb4IwFIb/Cuk9tIXEOQKYbItXM1kyzZbdNe0Rm9GPtJ3ovx+gImbe7LJ9nz55z4FicVBNtAfnpdEloglBEWhuhNR1iTbrZTxHkQ9MC9YYDSU6gkeLquA258bBmzMWXJDgo86jfc5tiXYh2Bxjz3egmE86Qnfh1jjFQnd0NbaMf7MacErIDCsITLDAcC+M7WhEZ6Xgo9L+uGYQCI6hAQU6eEwTiq9sAKf83QdDMiGVDEcLd9FLONIHL0ewbdukzQa060/x5+r1fRg1lrrfFAdUFYLn3AELxlUbHWumQBR4ctkvsGE+rLpNbyWIp+OE+5v1uIO97L9SRQdiPBbnoU9uEFFXNj+Ndkk+sueX9RJVKUlnMcliStfkMac0z+ZJSh6++mo3jqtUnUv82zqfWC+Samh+++NUv1BLAwQKAAAACABzSWtcmfyN5I0CAAAgDgAAEgAAAHdvcmQvbnVtYmVyaW5nLnhtbNVXyW7bMBD9FYF3R0vkBUKUoG2QwkU3oOkH0BJtE+EGkpLiW+899NZeg35av6RD2ZKXtqktN4B7osSZee9xyBlKF1f3nHkl0YZKkaLwLEAeEZnMqZil6OPtTW+EPGOxyDGTgqRoQQy6uryoElHwCdHg5vEsGc+E1HjCwKEKY68K+16lwhh5gC5MUqksRXNrVeL7JpsTjs0Zp5mWRk7tWSa5L6dTmhG/kjr3oyAM6ielZUaMAY4XWJTYNHD8VzSpiADjVGqOLbzqmc+xvitUD9AVtnRCGbULwA4GDYxMUaFFsoLotYJcSLIUtBqaCL0P7zLkWmYFJ8LWjL4mDDRIYeZUrZfRFQ2M8wakfGwRJWfrLQjj4/bgWuMKhjXgPvLzZRBnS+WPI4bBHjviINqIfSRsczZKOKZiTdwpNRvJDfuHAUS7AGp23Oa81LJQazR6HNpY3LVYrugPwFpt8ubSzHFiPsyxIsi1HDwxVuPMvi24t/U2zqF1Idd2Ek2gW2k3uexOz6aW6Oea4LsUBTUKL5ilr0lJ2O1CEQAqMQOFi4mm+RtnY86GfOfLSgYOFAYXXRNYKEOo5ZI4SudT8zUw4TIOmuMNbycnBWPEtoi35L41/fj2pZ1/lTWzjExX7uq9dgMVOdjcdIqGkVOSzLGY1U36fBA4X3/l7NdYu+LDpxH/+VDxYRx3UB89ifqvD4eqj8JBB/XnJ3JwotGog/r4RE4OiO2gvn8iJyc+71K1gxM5Of2gS9UOT0X9sEvVjk5E/SDer2r9rRvxr9dl9H9el5++H9w3do4ufKLslz5Rp000Xxc7GR3nO2sAlHfwHwVZIRs5aFe8YVtH+Vth9bv4DXn0Z/Lo35P7G/92lz8BUEsDBAoAAAAAAHNJa1wAAAAAAAAAAAAAAAAGAAAAX3JlbHMvUEsDBAoAAAAIAHNJa1wfo5KW5gAAAM4CAAALAAAAX3JlbHMvLnJlbHOtks9KAzEQh18lzL0721ZEpGkvUuhNpD5ASGZ3g80fJlOtb28oilbq2kOPmfzmyzdDFqtD2KlX4uJT1DBtWlAUbXI+9hqet+vJHayWiyfaGamJMvhcVG2JRcMgku8Rix0omNKkTLHedImDkXrkHrOxL6YnnLXtLfJPBpwy1cZp4I2bgtq+Z7qEnbrOW3pIdh8oypknfiUq2XBPouEtsUP3WW4qFvC8zexym78nxUBinBGDNjFNMtduFk/lW6i6PNZyOSbGhObXXA8dhKIjN65kch4zurmmkd0XSeGfFR0zX0p48jGXH1BLAwQKAAAACABzSWtcXKl+XpEBAAC1BwAAEwAAAFtDb250ZW50X1R5cGVzXS54bWy1VctOwzAQ/JUoV9S4cEAIteXA4wgc4ANce5MaYq9lbwr8Pev0IQWaUqC5ZT0zO2PvSplcvds6W0KIBt00Py3GeQZOoTaumubPT3eji/xqNnn68BAzpro4zRdE/lKIqBZgZSzQg2OkxGAlcRkq4aV6lRWIs/H4XCh0BI5GlHrks8kNlLKpKbtenafW09zYxPeuyrPbdz5exUm12Kt48dCVtAe/1vwkmVvfUaR6v6IyZUeR6v2KuKxO+B07Kj7rVUnva6MkMVEsnf4yh9F6BkWAuuXEhfHxmwGj8SCHr8JU/zEZlqVRoFE1liUFzssmMhv0HTfpmKAmap/tgTc0GA3/8XnDoH1ABTHyctu62CJWGrd6mUcZ6F5a7i0SXWwp6+sOkiPSRw1xd4AV9i/7zSIoDDBiYw+BzA4/DvjIaBSJeMwLqyYS2sOsW+oxzSFtkwZ9kD23HnTSrrFzCPy9e9hbeNAQJSI5pL6N28LD7jwQ8Vff1q/RQSMotAnoibBBBx4FN5LzGvpGsYY3IUT7H559AlBLAwQKAAAACABzSWtcWHnbIpIAAADkAAAAEwAAAGRvY1Byb3BzL2N1c3RvbS54bWydzkEKwjAQheGrlNnbVBcipWk34tpFdR/SaRtoZkImLfb2RgQP4PLxw8drupdfig2jOCYNx7KCAsny4GjS8OhvhwsUkgwNZmFCDTsKdG1zjxwwJodSZIBEw5xSqJUSO6M3UuZMuYwcvUl5xknxODqLV7arR0rqVFVnZVdJ7A/hx8HXq7f0Lzmw/byTZ7+H7Kn2DVBLAwQKAAAACABzSWtc4vyd2pMAAADmAAAAEAAAAGRvY1Byb3BzL2FwcC54bWydzkEKwjAQheGrhOxtqguR0rQbce2iug/JtA00MyETS3t7I4IHcPn44eO1/RYWsUJiT6jlsaqlALTkPE5aPobb4SIFZ4POLISg5Q4s+669J4qQsgcWBUDWcs45NkqxnSEYrkrGUkZKweQy06RoHL2FK9lXAMzqVNdnBVsGdOAO8QfKr9is+V/Ukf384+ewx+Kp7g1QSwMECgAAAAgAc0lrXM/h58LCAQAAnAYAABIAAAB3b3JkL2Zvb3Rub3Rlcy54bWzVlMFu4yAQhl/F4p5gR+1qZcXpYauuequa3QegBMeowCDA9ubtd2wTnO1WUdqcejHGzP/NP4xhffdHq6wTzkswFSmWOcmE4bCTZl+R378eFt/J3WbdlzVAMBCEz1BgfNlbXpEmBFtS6nkjNPNLLbkDD3VYctAU6lpyQXtwO7rKi3x8sw648B7pP5jpmCcRp/+ngRUGF2twmgWcuj3VzL22doF0y4J8kUqGA7Lzb0cMVKR1poyIRTI0SMrJUByOCndJ3klyD7zVwoQxI3VCoQcwvpF2LuOzNFxsjpDuXBGdViS1oLi5rgf3jvU4zMBL7O8mkVaT8/PEIr+gIwMiKS6x8G/OoxPNpJkTf2prTja3uP0YYPUWYPfXNeeng9bONHkd7dG8JpYRH2LFJp+W5q8zs22YxROoefm4N+DYi0JH2LIMdz0bfmtyeuVkfRkOFiO8sMyxAI7gJ7mryKIYA+34eHLD4C3jmAEDWB0Enu58CFZyqHl1kybP7ZCStQEI3axpkk+P+L4NBzVk75iqyEN08yxq4fCKFFEYg+t5OX5PuGQ7LdDRM51V75bLwQRp2vGW2b4tPf8Klb9bwbldOJn4zV9QSwMECgAAAAgAc0lrXNJ3/LdtAAAAewAAAB0AAAB3b3JkL19yZWxzL2Zvb3Rub3Rlcy54bWwucmVsc02MQQ4CIQxFr0K6d4oujDHDzG4OYPQADVYgDoVQYjy+LF3+vPf+vH7zbj7cNBVxcJwsGBZfnkmCg8d9O1xgXeYb79SHoTFVNSMRdRB7r1dE9ZEz6VQqyyCv0jL1MVvASv5NgfFk7Rnb/wfg8gNQSwMECgAAAAgAc0lrXCiOluCgAQAAcwUAABEAAAB3b3JkL3NldHRpbmdzLnhtbKWUwW7cIBCGX8XivosdNVVlxYnaRm1zqHpI+wATwDZaGBBgu/v2HdvrdZJK0W72BNbwf/MzY+bm7q81Wa9C1A4rVmxzlikUTmpsKvbn97fNJ5bFBCjBOFQV26vI7m5vhjKqlOhQzAiAsRy8qFibki85j6JVFuLWahFcdHXaCme5q2stFB9ckPwqL/Jp54MTKkYCfQXsIbIDzv5Pc14hBWsXLCT6DA23EHad3xDdQ9JP2ui0J3b+ccG4inUBywNiczQ0SsrZ0GFZFOGUvLPk3onOKkxTRh6UIQ8OY6v9eo330ijYLpD+rUv01rBjC4oPl/XgPsBAywo8xb6cRdbMzt8mFvkJHRkRR8UpFl7mXJxY0LgmfldpnhW3uD4PcPUa4JvLmvM9uM6vNH0Z7QF3R9b4rs9gHZr8/GrxMjOPLXh6gVaUDw26AE+GHFHLMqp6Nv7WbJw4UkdvYP8FxK6hWqCcZHwMqV7hZ5S/pPyhQNI0y4ayB1OxGkxUbDozT4l19zgPsOVkcc1o24Uz6joKECx5fTGBfjo5peRrTr7Oy9t/UEsDBAoAAAAIAHNJa1yLhjnExQEAAMYIAAARAAAAd29yZC9jb21tZW50cy54bWyl1N1y4iAYBuBbcThXklhTN9O0J53t9HjbC6CAwjT8DKDRu19SJUmXnU6CR+ok35OX18DD00k0iyM1litZg3yVgQWVWBEu9zV4f/u93IKFdUgS1ChJa3CmFjw9PrQVVkJQ6ezCA9JW+FQD5pyuILSYUYHsSnBslFU7t/L3QrXbcUwhMaj1Niyy/A5ihoyjJ9Ab+WxkA3/BbQwVCVCewSKPqfVsqoRdqgi6S4J8qkjapEn/WVyZJhWxdJ8mrWNpmyZFr5PAEaQ0lf7iThmBnP9p9lAg83nQSw9r5PgHb7g7ezMrA4O4/ExI5Kd6QazJbOEeCkVosyZBUTU4GFld55f9fBe9usxfP8KEmbL+y8izwoduO3+tHBra+C6UtIxr29eZqvmLLCDHnxZxFE24r9X5xO3SKkO6vrKvb9ooTK31HT5fqhzAKfGv/YvmkvxnMc8m/CMd0U9MifD9mSGJ8G/h8OCkakbl5hMPkAAUEVBiOvHAD8b2akA87NDO4RO3RnDK3uFk5KSFGQGWOMJmKUXoFXazyCGGLBuLdF6oTc+dxagjvb9tI7wYddCDxm/TXodjrZXzFpiV/7au7W1h/jCkKYCPfwFQSwMECgAAAAgAc0lrXNJ3/LdtAAAAewAAABwAAAB3b3JkL19yZWxzL2NvbW1lbnRzLnhtbC5yZWxzTYxBDgIhDEWvQrp3ii6MMcPMbg5g9AANViAOhVBiPL4sXf689/68fvNuPtw0FXFwnCwYFl+eSYKDx307XGBd5hvv1IehMVU1IxF1EHuvV0T1kTPpVCrLIK/SMvUxW8BK/k2B8WTtGdv/B+DyA1BLAwQKAAAACABzSWtcY+1e1h0BAABDAwAAEgAAAHdvcmQvZm9udFRhYmxlLnhtbJ3R3W7CIBQH8Fch3Cu1mY1prN4sS3a/PQACtUQOp+Hg1LcfrbZr4o3dFRDy/+V8bPdXcOzHBLLoK75aZpwZr1Bbf6z499fHYsMZRem1dOhNxW+G+H63vZQ1+kgspT2VoCrexNiWQpBqDEhaYmt8+qwxgIzpGY4CZDid24VCaGW0B+tsvIk8ywr+YMIrCta1VeYd1RmMj31eBOOSiJ4a29KgXV7RLhh0G1AZotQxuLsH0vqRWb09QWBVQMI6LlMzj4p6KsVXWX8D9wes5wH5E1Aoc51nbB6GSMmpY/U8pxgdqyfO/4qZAKSjbmYp+TBX0WVllI2kZiqaeUWtR+4G3YxAlZ9Hj0EeXJLS1llaHOthdp9cd7D7MtjQAhe7X1BLAwQKAAAACABzSWtc0nf8t20AAAB7AAAAHQAAAHdvcmQvX3JlbHMvZm9udFRhYmxlLnhtbC5yZWxzTYxBDgIhDEWvQrp3ii6MMcPMbg5g9AANViAOhVBiPL4sXf689/68fvNuPtw0FXFwnCwYFl+eSYKDx307XGBd5hvv1IehMVU1IxF1EHuvV0T1kTPpVCrLIK/SMvUxW8BK/k2B8WTtGdv/B+DyA1BLAQIUAAoAAAAAAHNJa1wAAAAAAAAAAAAAAAAFAAAAAAAAAAAAEAAAAAAAAAB3b3JkL1BLAQIUAAoAAAAAAHNJa1wAAAAAAAAAAAAAAAALAAAAAAAAAAAAEAAAACMAAAB3b3JkL19yZWxzL1BLAQIUAAoAAAAIAHNJa1xzjNbl7wAAAJ4DAAAcAAAAAAAAAAAAAAAAAEwAAAB3b3JkL19yZWxzL2RvY3VtZW50LnhtbC5yZWxzUEsBAhQACgAAAAgAc0lrXJVoF0ZAFQAAmwoBABEAAAAAAAAAAAAAAAAAdQEAAHdvcmQvZG9jdW1lbnQueG1sUEsBAhQACgAAAAgAc0lrXHtYedu4AgAAPA0AAA8AAAAAAAAAAAAAAAAA5BYAAHdvcmQvc3R5bGVzLnhtbFBLAQIUAAoAAAAAAHNJa1wAAAAAAAAAAAAAAAAJAAAAAAAAAAAAEAAAAMkZAABkb2NQcm9wcy9QSwECFAAKAAAACABzSWtc6RDqsjkBAACDAgAAEQAAAAAAAAAAAAAAAADwGQAAZG9jUHJvcHMvY29yZS54bWxQSwECFAAKAAAACABzSWtcmfyN5I0CAAAgDgAAEgAAAAAAAAAAAAAAAABYGwAAd29yZC9udW1iZXJpbmcueG1sUEsBAhQACgAAAAAAc0lrXAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAQAAAAFR4AAF9yZWxzL1BLAQIUAAoAAAAIAHNJa1wfo5KW5gAAAM4CAAALAAAAAAAAAAAAAAAAADkeAABfcmVscy8ucmVsc1BLAQIUAAoAAAAIAHNJa1xcqX5ekQEAALUHAAATAAAAAAAAAAAAAAAAAEgfAABbQ29udGVudF9UeXBlc10ueG1sUEsBAhQACgAAAAgAc0lrXFh52yKSAAAA5AAAABMAAAAAAAAAAAAAAAAACiEAAGRvY1Byb3BzL2N1c3RvbS54bWxQSwECFAAKAAAACABzSWtc4vyd2pMAAADmAAAAEAAAAAAAAAAAAAAAAADNIQAAZG9jUHJvcHMvYXBwLnhtbFBLAQIUAAoAAAAIAHNJa1zP4efCwgEAAJwGAAASAAAAAAAAAAAAAAAAAI4iAAB3b3JkL2Zvb3Rub3Rlcy54bWxQSwECFAAKAAAACABzSWtc0nf8t20AAAB7AAAAHQAAAAAAAAAAAAAAAACAJAAAd29yZC9fcmVscy9mb290bm90ZXMueG1sLnJlbHNQSwECFAAKAAAACABzSWtcKI6W4KABAABzBQAAEQAAAAAAAAAAAAAAAAAoJQAAd29yZC9zZXR0aW5ncy54bWxQSwECFAAKAAAACABzSWtci4Y5xMUBAADGCAAAEQAAAAAAAAAAAAAAAAD3JgAAd29yZC9jb21tZW50cy54bWxQSwECFAAKAAAACABzSWtc0nf8t20AAAB7AAAAHAAAAAAAAAAAAAAAAADrKAAAd29yZC9fcmVscy9jb21tZW50cy54bWwucmVsc1BLAQIUAAoAAAAIAHNJa1xj7V7WHQEAAEMDAAASAAAAAAAAAAAAAAAAAJIpAAB3b3JkL2ZvbnRUYWJsZS54bWxQSwECFAAKAAAACABzSWtc0nf8t20AAAB7AAAAHQAAAAAAAAAAAAAAAADfKgAAd29yZC9fcmVscy9mb250VGFibGUueG1sLnJlbHNQSwUGAAAAABQAFADzBAAAhysAAAAA";
+function downloadResume() {
+  const bin = atob(RESUME_B64);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+  const blob = new Blob([arr], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'Bara_Luch_Resume_Final.docx';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+}
 
-  // Contact form
-  function handleSubmit(e) {
-    e.preventDefault();
-    const name    = e.target[0].value;
-    const email   = e.target[1].value;
-    const company = e.target[2].value;
-    const message = e.target[3].value;
-    const body    = `Hi Bara,%0A%0AMy name is ${name} from ${company}.%0A%0A${message}%0A%0ABest regards,%0A${name}`;
-    window.location.href = `mailto:reapaerx@gmail.com?subject=Portfolio Inquiry from ${name}&body=${body}`;
-  }
-
-  // Active nav highlight
-  const sections = document.querySelectorAll('section[id]');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
-    document.querySelectorAll('.nav-links a').forEach(a => {
-      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--blue)' : '';
-    });
-  });
+// Scroll fade
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
