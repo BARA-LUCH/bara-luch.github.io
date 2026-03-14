@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bara Luch — ML Engineer & Data Scientist</title>
+  <meta name="description" content="Bara Luch — ML Engineer, Data Scientist & Business Analyst. 7 end-to-end projects spanning fraud detection, NLP, computer vision, and healthcare analytics. Available worldwide." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:       #1A56A0;
+      --blue-light: #2E6FBF;
+      --blue-pale:  #EBF2FB;
+      --blue-mid:   #C5D9F1;
+      --ink:        #111827;
+      --muted:      #4B5563;
+      --light:      #F8FAFC;
+      --white:      #FFFFFF;
+      --accent:     #E84040;
+      --border:     #DDE6F0;
+      --green:      #059669;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--blue); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta { background: var(--blue); color: var(--white) !important; padding: 0.45rem 1.1rem; border-radius: 6px; }
+    .nav-cta:hover { background: var(--blue-light) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; padding: 110px 5vw 80px;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center;
+      background: radial-gradient(ellipse 90% 70% at 75% 40%, var(--blue-pale) 0%, transparent 65%), var(--white);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--blue-pale); border: 1px solid var(--blue-mid);
+      color: var(--blue); border-radius: 100px;
+      font-size: 0.75rem; font-weight: 600; padding: 0.35rem 1rem;
+      margin-bottom: 1.5rem; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .hero-badge span { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: inline-block; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.6rem, 4.5vw, 3.8rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.25rem; }
+    h1 em { color: var(--blue); font-style: italic; }
+    .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 480px; margin-bottom: 0.75rem; }
+    .availability { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--green); font-weight: 600; margin-bottom: 2rem; }
+    .availability::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--green); }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.6rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; }
+    .btn-primary { background: var(--blue); color: var(--white); box-shadow: 0 4px 16px rgba(26,86,160,0.3); }
+    .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,86,160,0.35); }
+    .btn-secondary { background: var(--white); color: var(--blue); border: 2px solid var(--blue-mid); }
+    .btn-secondary:hover { background: var(--blue-pale); border-color: var(--blue); }
+    .hero-stats { display: flex; gap: 2.5rem; }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--blue); line-height: 1; }
+    .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+
+    /* Hero visual */
+    .hero-visual { position: relative; }
+    .hero-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(26,86,160,0.1);
+    }
+    .card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .card-dot { width:10px; height:10px; border-radius:50%; }
+    .card-title { font-size: 0.8rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .metric-row { display: flex; justify-content: space-between; margin-bottom: 0.75rem; align-items: center; }
+    .metric-label { font-size: 0.85rem; color: var(--muted); }
+    .metric-val { font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+    .metric-val.good { color: var(--green); }
+    .bar-wrap { height: 6px; background: var(--blue-pale); border-radius: 3px; margin-bottom: 1rem; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--blue-light)); animation: grow 1.5s ease forwards; transform-origin: left; }
+    @keyframes grow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+    .floating-tag {
+      position: absolute; background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.6rem 1rem; font-size: 0.8rem; font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      animation: float 4s ease-in-out infinite;
+    }
+    .tag-1 { top: -20px; right: 20px; color: var(--blue); animation-delay: 0s; }
+    .tag-2 { bottom: -15px; left: 10px; color: var(--green); animation-delay: 1.5s; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+    /* ── SECTIONS ── */
+    section { padding: 90px 5vw; }
+    section:nth-child(even) { background: var(--light); }
+    .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+    h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .section-sub { font-size: 1rem; color: var(--muted); max-width: 560px; margin-bottom: 3rem; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 0.975rem; }
+    .about-text p strong { color: var(--ink); }
+    .about-flags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .flag-chip { background: var(--blue-pale); color: var(--blue); border: 1px solid var(--blue-mid); border-radius: 6px; padding: 0.3rem 0.75rem; font-size: 0.8rem; font-weight: 600; }
+    .lang-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+    .lang-name { font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; }
+    .lang-level { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.5rem; transition: all 0.2s;
+      border-top: 3px solid var(--blue);
+    }
+    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,86,160,0.1); }
+    .skill-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .skill-title { font-weight: 700; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.75rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag { background: var(--blue-pale); color: var(--blue); border-radius: 4px; padding: 0.2rem 0.6rem; font-size: 0.75rem; font-weight: 500; }
+
+    /* ── PROJECTS ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.75rem; }
+    .project-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.75rem; transition: all 0.25s; position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+    }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(26,86,160,0.12); }
+    .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+    .project-emoji { font-size: 1.75rem; }
+    .project-links { display: flex; gap: 0.5rem; }
+    .project-link { font-size: 0.78rem; font-weight: 600; color: var(--blue); text-decoration: none; background: var(--blue-pale); padding: 0.25rem 0.65rem; border-radius: 5px; transition: background 0.2s; }
+    .project-link:hover { background: var(--blue-mid); }
+    .project-link.live { background: #DCFCE7; color: var(--green); }
+    .project-link.live:hover { background: #BBF7D0; }
+    .project-title { font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
+    .project-desc { font-size: 0.875rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
+    .project-metrics { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .metric-chip { background: var(--light); border: 1px solid var(--border); border-radius: 5px; padding: 0.2rem 0.6rem; font-size: 0.75rem; font-weight: 600; color: var(--ink); }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stack-tag { background: var(--blue-pale); color: var(--blue); border-radius: 4px; padding: 0.2rem 0.55rem; font-size: 0.72rem; font-weight: 500; }
+    .project-date { font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; }
+
+    /* ── EXPERIENCE ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background: var(--blue-mid); border-radius:1px; }
+    .timeline-item { position: relative; margin-bottom: 2.5rem; }
+    .timeline-item::before { content:''; position:absolute; left:-2.45rem; top:6px; width:12px; height:12px; border-radius:50%; background: var(--blue); border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--blue); }
+    .timeline-date { font-size: 0.78rem; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .timeline-title { font-weight: 700; font-size: 1rem; color: var(--ink); }
+    .timeline-org { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .timeline-bullets { list-style: none; }
+    .timeline-bullets li { font-size: 0.875rem; color: var(--muted); padding: 0.2rem 0; padding-left: 1rem; position: relative; }
+    .timeline-bullets li::before { content:'→'; position:absolute; left:0; color:var(--blue); font-size:0.75rem; top:0.25rem; }
+
+    /* ── CONTACT ── */
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-info h3 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; margin-bottom: 1rem; }
+    .contact-info p { color: var(--muted); margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--ink); font-size: 0.9rem; font-weight: 500; padding: 0.75rem 1rem; background: var(--white); border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s; }
+    .contact-link:hover { background: var(--blue-pale); border-color: var(--blue); color: var(--blue); }
+    .contact-icon { font-size: 1.1rem; }
+    .contact-form { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--ink); margin-bottom: 0.4rem; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--ink);
+      background: var(--light); transition: border-color 0.2s; outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--blue); background: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-note { font-size: 0.8rem; color: var(--muted); margin-top: 0.75rem; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); color: rgba(255,255,255,0.6); text-align: center; padding: 2rem 5vw; font-size: 0.85rem; }
+    footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+    footer strong { color: var(--white); }
+
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; padding: 90px 5vw 60px; }
+      .hero-visual { display: none; }
+      .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#hero" class="nav-logo">Bara Luch</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-text fade-in">
+    <div class="hero-badge"><span></span> Available for remote &amp; relocation worldwide</div>
+    <h1>ML Engineer,<br><em>Data Scientist</em><br>&amp; Business Analyst</h1>
+    <p class="hero-sub">Building end-to-end AI systems that turn complex data into measurable business impact — from fraud detection to healthcare analytics.</p>
+    <p class="availability">📍 Tel Aviv, Israel &amp; St. John's, Canada · Open to USA, UK, Canada, Germany, Asia &amp; beyond</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      <a href="https://github.com/BARA-LUCH" target="_blank" class="btn btn-secondary">GitHub ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">7</div><div class="stat-label">End-to-end projects</div></div>
+      <div><div class="stat-num">6.3M</div><div class="stat-label">Max dataset rows</div></div>
+      <div><div class="stat-num">0.991</div><div class="stat-label">Best ROC-AUC</div></div>
+    </div>
+  </div>
+
+  <div class="hero-visual fade-in">
+    <div style="position:relative;">
+      <div class="floating-tag tag-1">🔐 Fraud: ROC-AUC 0.991</div>
+      <div class="hero-card">
+        <div class="card-header">
+          <div class="card-dot" style="background:#E84040"></div>
+          <div class="card-dot" style="background:#F59E0B"></div>
+          <div class="card-dot" style="background:#10B981"></div>
+          <span class="card-title">Model Performance</span>
+        </div>
+        <div class="metric-row"><span class="metric-label">XGBoost — Fraud Detection</span><span class="metric-val good">0.991</span></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:99.1%"></div></div>
+        <div class="metric-row"><span class="metric-label">Graph-XGBoost — Churn</span><span class="metric-val good">0.791</span></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:79.1%; animation-delay:0.3s"></div></div>
+        <div class="metric-row"><span class="metric-label">LSTM — Stock Prediction</span><span class="metric-val good">0.743</span></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:74.3%; animation-delay:0.6s"></div></div>
+        <div class="metric-row"><span class="metric-label">ViT — Thermal Segmentation</span><span class="metric-val good">43.29% IoU</span></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:65%; animation-delay:0.9s"></div></div>
+        <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; font-size:0.8rem; color:var(--muted);">
+          <span>📊 7 Projects</span><span>🌍 Available Worldwide</span><span>🎓 Apr 2026</span>
+        </div>
+      </div>
+      <div class="floating-tag tag-2">💰 $284K Revenue Protected</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <h2>Turning data into<br>decisions that matter</h2>
+      <p>I'm a Junior ML Engineer and Data Scientist based in <strong>Tel Aviv, Israel</strong> and <strong>St. John's, Canada</strong>, graduating with a B.Sc. in Data Science & Business (Finance) from Memorial University of Newfoundland in April 2026.</p>
+      <p>I spent a full year at <strong>Sungkyunkwan University (SKKU), South Korea</strong> as a research exchange student, building and benchmarking production-style AI systems covering computer vision, NLP, and multimodal learning.</p>
+      <p>I'm equally strong in <strong>business analytics</strong> — I don't just build models, I translate them into SQL reports, Excel dashboards, and stakeholder presentations that drive real decisions.</p>
+      <p>I'm actively looking for <strong>Data Scientist, ML Engineer, and Business Analyst roles</strong> — open to remote work and relocation worldwide.</p>
+      <div class="about-flags">
+        <span class="flag-chip">🇺🇸 USA</span>
+        <span class="flag-chip">🇬🇧 UK</span>
+        <span class="flag-chip">🇨🇦 Canada</span>
+        <span class="flag-chip">🇩🇪 Germany</span>
+        <span class="flag-chip">🌏 Asia</span>
+        <span class="flag-chip">🇮🇱 Israel</span>
+        <span class="flag-chip">🌍 Worldwide Remote</span>
+      </div>
+    </div>
+    <div class="fade-in">
+      <div class="lang-card">
+        <div class="lang-name">🇬🇧 English</div>
+        <div class="lang-level">Fluent — professional working proficiency</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">🇮🇱 Hebrew</div>
+        <div class="lang-level">Native speaker</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">🇸🇦 Arabic</div>
+        <div class="lang-level">Native speaker</div>
+      </div>
+      <div class="lang-card" style="background:var(--blue-pale); border-color:var(--blue-mid);">
+        <div class="lang-name" style="color:var(--blue)">🎓 B.Sc. Data Science & Business</div>
+        <div class="lang-level" style="color:var(--blue)">Memorial University of Newfoundland · Apr 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="section-label">Technical Skills</div>
+  <h2>Full-stack data science</h2>
+  <p class="section-sub">From raw data to deployed models to boardroom-ready reports.</p>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-title">Machine Learning</div>
+      <div class="skill-tags">
+        <span class="skill-tag">XGBoost</span><span class="skill-tag">Random Forest</span>
+        <span class="skill-tag">Logistic Regression</span><span class="skill-tag">SHAP</span>
+        <span class="skill-tag">Isolation Forest</span><span class="skill-tag">Scikit-learn</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🧠</div>
+      <div class="skill-title">Deep Learning</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">CNNs</span><span class="skill-tag">LSTMs</span>
+        <span class="skill-tag">Vision Transformers</span><span class="skill-tag">Autoencoders</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">💬</div>
+      <div class="skill-title">NLP & AI</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HuggingFace</span><span class="skill-tag">OpenAI API</span>
+        <span class="skill-tag">NER</span><span class="skill-tag">Sentiment Analysis</span>
+        <span class="skill-tag">Multilingual</span><span class="skill-tag">SegFormer</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-title">Business Analytics & SQL</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL</span><span class="skill-tag">SQLite</span>
+        <span class="skill-tag">CTEs</span><span class="skill-tag">Window Functions</span>
+        <span class="skill-tag">Excel</span><span class="skill-tag">KPI Dashboards</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">📊</div>
+      <div class="skill-title">Data & Visualization</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Plotly</span><span class="skill-tag">Streamlit</span>
+        <span class="skill-tag">Folium</span><span class="skill-tag">Feature Engineering</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-title">Tools & Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span><span class="skill-tag">R</span>
+        <span class="skill-tag">C++</span><span class="skill-tag">Git</span>
+        <span class="skill-tag">Docker</span><span class="skill-tag">Linux</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2>7 end-to-end projects</h2>
+  <p class="section-sub">Every project has real metrics, real data, and a live GitHub repo. No tutorials, no toy datasets.</p>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-emoji">🔐</div>
+        <div class="project-links">
+          <a href="https://github.com/BARA-LUCH/financial-fraud-detection" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <div class="project-title">Financial Fraud Detection System</div>
+      <div class="project-desc">4-model fraud detection pipeline on 500K+ transactions — XGBoost, Isolation Forest, Autoencoder, and Graph-enhanced XGBoost — with 8 SQL queries and SHAP explainability.</div>
+      <div class="project-metrics">
+        <span class="metric-chip">ROC-AUC 0.991</span>
+        <span class="metric-chip">500K+ transactions</span>
+        <span class="metric-chip">$284K revenue protected</span>
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">XGBoost</span><span class="stack-tag">PyTorch</span>
+        <span class="stack-tag">SQL</span><span class="stack-tag">SHAP</span><span class="stack-tag">Streamlit</span>
+      </div>
+      <div class="project-date">Jan 2026 – Present</div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-emoji">🏥</div>
+        <div class="project-links">
+          <a href="https://github.com/BARA-LUCH/healthcare-analytics" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <div class="project-title">U.S. Healthcare Cost & Efficiency Analyzer</div>
+      <div class="project-desc">BI dashboard on CMS Medicare data across all 50 US states — identifying overcharging hospitals, quality gaps, and cost inefficiencies via 8 SQL queries and interactive maps.</div>
+      <div class="project-metrics">
+        <span class="metric-chip">50 US states</span>
+        <span class="metric-chip">8 SQL queries</span>
+        <span class="metric-chip">Excel export</span>
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">SQL</span><span class="stack-tag">Plotly</span>
+        <span class="stack-tag">Streamlit</span><span class="stack-tag">openpyxl</span><span class="stack-tag">CMS Data</span>
+      </div>
+      <div class="project-date">Jan 2026 – Present</div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-emoji">📊</div>
+        <div class="project-links">
+          <a href="https://github.com/BARA-LUCH/customer-churn-dashboard" target="_blank" class="project-link">GitHub</a>
+          <a href="https://huggingface.co/spaces/bara-luch/customer-churn-dashboard" target="_blank" class="project-link live">Live Demo ↗</a>
+        </div>
+      </div>
+      <div class="project-title">Customer Churn Prediction Dashboard</div>
+      <div class="project-desc">3 churn models on 71,047 US telecom customers with SHAP explainability and a business impact calculator showing revenue saved per retention campaign.</div>
+      <div class="project-metrics">
+        <span class="metric-chip">ROC-AUC 0.791</span>
+        <span class="metric-chip">71K customers</span>
+        <span class="metric-chip">$242K net profit</span>
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">XGBoost</span><span class="stack-tag">Random Forest</span>
+        <span class="stack-tag">SHAP</span><span class="stack-tag">Streamlit</span>
+      </div>
+      <div class="project-date">Jan 2026 – Present</div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-emoji">📈</div>
+        <div class="project-links">
+          <a href="https://github.com/BARA-LUCH/stock-prediction-explainability" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <div class="project-title">Stock Price Prediction & Explainability</div>
+      <div class="project-desc">Forecasts 45+ assets (US stocks, Israeli equities, crypto, ETFs) using 38 technical indicators with XGBoost, Random Forest, and LSTM models.</div>
+      <div class="project-metrics">
+        <span class="metric-chip">45+ assets</span>
+        <span class="metric-chip">38 indicators</span>
+        <span class="metric-chip">SHAP waterfall</span>
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">XGBoost</span><span class="stack-tag">LSTM</span>
+        <span class="stack-tag">PyTorch</span><span class="stack-tag">yfinance</span><span class="stack-tag">SHAP</span>
+      </div>
+      <div class="project-date">Jan 2026 – Present</div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-emoji">🔍</div>
+        <div class="project-links">
+          <a href="https://github.com/BARA-LUCH/crime-news-analyzer" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <div class="project-title">AI Crime News Analyzer</div>
+      <div class="project-desc">Multilingual NLP pipeline (Hebrew, Arabic, English) extracting entities, sentiment, and locations from news articles — with interactive crime heatmaps.</div>
+      <div class="project-metrics">
+        <span class="metric-chip">3 languages</span>
+        <span class="metric-chip">OCR + NER</span>
+        <span class="metric-chip">Interactive maps</span>
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">HuggingFace</span><span class="stack-tag">spaCy</span>
+        <span class="stack-tag">Tesseract</span><span class="stack-tag">Folium</span><span class="stack-tag">GPT-4o</span>
+      </div>
+      <div class="project-date">Mar 2025 – Jan 2026</div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-emoji">🌡️</div>
+        <div class="project-links">
+          <a href="https://github.com/BARA-LUCH/dual-stream-vit-segmentation" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <div class="project-title">Dual-Stream Vision Transformer</div>
+      <div class="project-desc">RGB-thermal semantic segmentation for adverse weather perception. Trained at SKKU research lab on 2,197 aligned image pairs.</div>
+      <div class="project-metrics">
+        <span class="metric-chip">IoU 42.94% → 43.29%</span>
+        <span class="metric-chip">+11% Bicycle IoU</span>
+        <span class="metric-chip">2,197 image pairs</span>
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">PyTorch</span><span class="stack-tag">ViT</span>
+        <span class="stack-tag">SegFormer</span><span class="stack-tag">OpenCV</span>
+      </div>
+      <div class="project-date">Mar 2025 – Jan 2026</div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-emoji">😴</div>
+        <div class="project-links">
+          <a href="https://github.com/BARA-LUCH/wake-wise" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <div class="project-title">Wake-Wise — Drowsiness Detection</div>
+      <div class="project-desc">Real-time drowsiness detection at 30+ FPS using EAR/MAR facial landmark analysis. Deployed as Flask app with adaptive engagement quizzes.</div>
+      <div class="project-metrics">
+        <span class="metric-chip">30+ FPS</span>
+        <span class="metric-chip">~100 users tested</span>
+        <span class="metric-chip">Flask deployed</span>
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">OpenCV</span><span class="stack-tag">MediaPipe</span>
+        <span class="stack-tag">Flask</span><span class="stack-tag">EAR/MAR</span>
+      </div>
+      <div class="project-date">Mar 2025 – Jan 2026</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="section-label">Experience & Education</div>
+  <h2>Background</h2>
+  <p class="section-sub">Research experience in South Korea, graduating April 2026.</p>
+  <div class="timeline">
+    <div class="timeline-item fade-in">
+      <div class="timeline-date">Mar 2025 – Jan 2026</div>
+      <div class="timeline-title">Applied AI & ML Researcher</div>
+      <div class="timeline-org">Sungkyunkwan University (SKKU) — Research Exchange · Seoul, South Korea</div>
+      <ul class="timeline-bullets">
+        <li>Built 4+ end-to-end AI systems covering computer vision, NLP, and multimodal learning</li>
+        <li>Developed full ML pipelines: ingestion, preprocessing, training, evaluation, deployment</li>
+        <li>Implemented dual-stream ViT for RGB-thermal segmentation; improved mean IoU 42.94% → 43.29%</li>
+        <li>Collaborated with international teams delivering metrics-driven reproducible results</li>
+      </ul>
+    </div>
+    <div class="timeline-item fade-in">
+      <div class="timeline-date">Sep 2022 – Apr 2026</div>
+      <div class="timeline-title">B.Sc. Data Science & Business (Finance)</div>
+      <div class="timeline-org">Memorial University of Newfoundland · Canada</div>
+      <ul class="timeline-bullets">
+        <li>Relevant coursework: Machine Learning, Statistical Analysis, Financial Modeling, Database Systems, Business Analytics</li>
+        <li>Research exchange at SKKU, South Korea — Mar 2025 to Jan 2026</li>
+        <li>Executive — Memorial University Volleyball Club</li>
+        <li>2× Ideathon Participant · Hackathon Participant</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <div class="contact-wrap">
+    <div class="contact-info fade-in">
+      <h2>Let's work<br>together</h2>
+      <p>I'm actively looking for Data Scientist, ML Engineer, and Business Analyst roles — remote or relocation. Based in Tel Aviv, Israel and St. John's, Canada — open to opportunities worldwide.</p>
+      <div class="contact-links">
+        <a href="mailto:reapaerx@gmail.com" class="contact-link">
+          <span class="contact-icon">✉️</span> reapaerx@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/bara-luch" target="_blank" class="contact-link">
+          <span class="contact-icon">💼</span> linkedin.com/in/bara-luch
+        </a>
+        <a href="https://github.com/BARA-LUCH" target="_blank" class="contact-link">
+          <span class="contact-icon">💻</span> github.com/BARA-LUCH
+        </a>
+        <a href="https://huggingface.co/spaces/bara-luch/customer-churn-dashboard" target="_blank" class="contact-link">
+          <span class="contact-icon">🤗</span> Live Demo — Churn Dashboard
+        </a>
+        <div class="contact-link" style="cursor:default;">
+          <span class="contact-icon">📍</span> Tel Aviv, Israel &amp; St. John's, Canada · Available worldwide
+        </div>
+        <div class="contact-link" style="cursor:default;">
+          <span class="contact-icon">📞</span> 053-274-1955
+        </div>
+      </div>
+    </div>
+    <div class="contact-form fade-in">
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Smith" required />
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" placeholder="john@company.com" required />
+        </div>
+        <div class="form-group">
+          <label>Company / Organization</label>
+          <input type="text" placeholder="Company name" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell me about the role or opportunity..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+          Send Message →
+        </button>
+        <p class="form-note">* Form sends via mailto — your email client will open.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>Built by <strong>Bara Luch</strong> · ML Engineer & Data Scientist · Tel Aviv, Israel &amp; St. John's, Canada</p>
+  <p style="margin-top:0.5rem;">
+    <a href="https://github.com/BARA-LUCH">GitHub</a> ·
+    <a href="https://linkedin.com/in/bara-luch">LinkedIn</a> ·
+    <a href="https://huggingface.co/spaces/bara-luch/customer-churn-dashboard">Live Demo</a>
+  </p>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name    = e.target[0].value;
+    const email   = e.target[1].value;
+    const company = e.target[2].value;
+    const message = e.target[3].value;
+    const body    = `Hi Bara,%0A%0AMy name is ${name} from ${company}.%0A%0A${message}%0A%0ABest regards,%0A${name}`;
+    window.location.href = `mailto:reapaerx@gmail.com?subject=Portfolio Inquiry from ${name}&body=${body}`;
+  }
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--blue)' : '';
+    });
+  });
+</script>
+</body>
+</html>
